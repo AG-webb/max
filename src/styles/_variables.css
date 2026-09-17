@@ -1,0 +1,84 @@
+:root {
+  --font-primary: "Roboto";
+
+  --nav-width: 76px;
+  --aside-width: 394px;
+
+  --desk-xl: 1659px;
+  --desk-l: 1439px;
+  --desk-m: 1365px;
+  --desk-s: 1279px;
+  --tablet: 1023px;
+  --mobile-s: 767px;
+  --mobile-xs: 450px;
+
+  --min-desk-xl: 1660px;
+  --min-desk-l: 1440px;
+  --min-desk-m: 1366px;
+  --min-desk-s: 1280px;
+  --min-tablet: 1024px;
+  --min-mobile-s: 768px;
+  --min-mobile-xs: 451px;
+
+  /* Background */
+  --background-surface: #0f0f12;
+  --background-primary: #17181c;
+  --background-secondary: #25262d;
+  --background-tertiary: #ffffff17;
+  --background-card: #25262d;
+  --background-overlay: #0d0d0da3;
+  --background-overlay-secondary: #0009;
+  --background-overlay-hard: #0c0d0ecc;
+  --background-overlay-media-preview: #000000d9;
+  --background-themed-fade: #007aff29;
+  --background-pattern-color: #505bc74d;
+
+  /* text */
+  --text-primary: #fff;
+  --text-secondary: #fffc;
+  --text-tertiary: #ffffffa3;
+  --text-mute: #fff6;
+  --text-primary-static: #060708;
+  --text-primary-inverse: #060708;
+  --text-primary-inverse-static: #fff;
+  --text-secondary-inverse-static: #fffc;
+  --text-mute-inverse-static: #fff6;
+  --text-themed: #007aff;
+  --text-positive: #2bc644;
+  --text-negative: #ce4257;
+  --text-attention: #ffd60a;
+
+  /* Icon */
+  --icon-primary: #fff;
+  --icon-secondary: #ffffffad;
+  --icon-tertiary: #ffffff85;
+  --icon-mute: #ffffff5c;
+  --icon-primary-static: #060708d6;
+  --icon-primary-inverse: #060708d6;
+  --icon-primary-inverse-static: #fff;
+  --icon-secondary-inverse-static: #ffffffad;
+  --icon-mute-inverse-static: #ffffff52;
+  --icon-themed: #007aff;
+  --icon-positive: #2bc644;
+  --icon-negative: #ce4257;
+  --icon-attention: #ffd60a;
+
+  --stroke-themed: #007aff;
+  --stroke-secondary: #ffffff70;
+  --stroke-tertiary: #ffffff29;
+  --stroke-primary-inverse-static: #fff;
+  --stroke-secondary-inverse-static: #ffffff4d;
+  --stroke-positive: #2bc644;
+  --stroke-negative: #ff444f;
+  --stroke-negative-fade: #ff303ca3;
+  --stroke-transparent: #fff0;
+  --stroke-glass: #383e4570;
+  --stroke-primary-carver: #17181c;
+  --stroke-card-carver: #25262d;
+  --stroke-snap-guide: #007aff;
+  --divider-primary: #ffffff1f;
+  --divider-secondary: #ffffff0f;
+
+  /* hover */
+  --background-card-hover: #32343d;
+}

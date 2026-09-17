@@ -1,0 +1,76 @@
+@font-face {
+  font-family: "Geist";
+  src:
+    local("Geist Regular"),
+    local("Geist-Regular"),
+    url("@/assets/fonts/Geist-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src:
+    local("Geist Medium"),
+    local("Geist-Medium"),
+    url("@/assets/fonts/Geist-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src:
+    local("Geist SemiBold"),
+    local("Geist-SemiBold"),
+    url("@/assets/fonts/Geist-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src:
+    local("Geist Bold"),
+    local("Geist-Bold"),
+    url("@/assets/fonts/Geist-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src:
+    local("Geist ExtraBold"),
+    local("Geist-ExtraBold"),
+    url("@/assets/fonts/Geist-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src:
+    local("GeistMono Regular"),
+    local("GeistMono-Regular"),
+    url("@/assets/fonts/GeistMono-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src:
+    local("GeistMono Bold"),
+    local("GeistMono-Bold"),
+    url("@/assets/fonts/GeistMono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

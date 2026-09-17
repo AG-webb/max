@@ -1,0 +1,37 @@
+@import "_variables.css";
+@import "_fonts.css";
+@import "_icons.css";
+@import "tailwindcss";
+
+@custom-variant light (&:where(.light-theme, .light-theme *));
+
+@layer base {
+  html {
+    @apply scroll-smooth text-neutral-primary bg-dark-primary;
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Roboto", system-ui, Avenir, Helvetica,
+      Arial, sans-serif;
+    background: var(--background-primary) url("@/assets/images/bg-pattern.svg")
+      repeat;
+  }
+}
+
+@theme {
+  --breakpoint-lg: 58.5rem;
+}
+
+@theme inline {
+  --color-neutral-primary: var(--text-primary);
+  --color-neutral-secondary: var(--text-secondary);
+  --color-dark-primary: var(--background-primary);
+  --color-dark-secondary: var(--background-secondary);
+  --color-dark-surface: var(--background-surface);
+  --color-divider-primary: var(--divider-primary);
+  --color-divider-secondary: var(--divider-secondary);
+  --color-card-hover: var(--background-card-hover);
+}
+
+/* for iphone when set overflow: hidden + border-radius */
+@utility overflow-radius {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
