@@ -1,4 +1,4 @@
-import type { StateInstance, StatusType } from "@/types";
+import type { DefaultStateType, StateInstance } from "@/types";
 
 export type authQrType = "qrCode";
 export type AuthErrorType = "error" | "already_registered";
@@ -17,9 +17,7 @@ export interface StateInstanceResponse {
   stateInstance: StateInstance;
 }
 
-export interface AuthState {
+export interface AuthState extends DefaultStateType {
   qrCode: string | null;
   authenticated: StateInstance | null;
-  error: AuthErrorMessageType | null;
-  status: StatusType;
 }

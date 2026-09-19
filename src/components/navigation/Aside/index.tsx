@@ -1,9 +1,19 @@
-import ChatCell from "@/components/ui/PageLoader/ChatCell";
+import ChatCell from "@/components/ui/ChatCell";
+import { useJournals } from "@/features/journals/hooks/useJournals";
 import { useService } from "@/features/service/hooks/useService";
+import { getChats } from "@/features/service/model/serviceThunks";
 import clsx from "clsx";
+import { useEffect } from "react";
 
 const Aside = ({ className }: { className?: string }) => {
-  const { chats } = useService();
+  const { chats, dispatch } = useService();
+  const { chatHistory } = useJournals();
+
+  useEffect(() => {
+    if (chats === null) {
+      dispatch(getChats());
+    }
+  }, [chats, dispatch]);
 
   return (
     <aside
@@ -21,9 +31,21 @@ const Aside = ({ className }: { className?: string }) => {
         <div className="pb-2">Search</div>
       </div>
       <div className="aside__chats overflow-x-scroll">
-        {chats?.map((chat) => (
-          <ChatCell key={chat.chatId} {...chat} />
-        ))}
+        {chats?.map((chat, index) => {
+          // REMOVE!! STATEMENT FOR NOT TO OVERLOAD NETWORK
+          if (index > 1) return;
+          const lastMessage =
+            chatHistory?.find((history) => history.chatId === chat.chatId) ||
+            null;
+
+          return (
+            <ChatCell
+              key={chat.chatId}
+              lastMessage={lastMessage}
+              {...chat}
+            />
+          );
+        })}
       </div>
     </aside>
   );

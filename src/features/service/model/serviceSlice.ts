@@ -1,31 +1,32 @@
+import {
+  DEFAULT_ACTION_RESULT,
+  SLICE_NAMES,
+} from "@/app/store/store.constants";
+import { addThunkMatchers } from "@/app/store/utils/addThunkMatchers";
 import { createSlice } from "@reduxjs/toolkit";
 import type { serviceState } from "../types";
 import { getChats } from "./serviceThunks";
 
 const initialState: serviceState = {
   chats: null,
-  error: null,
-  status: "idle",
+  actionResult: DEFAULT_ACTION_RESULT,
 };
 
 export const serviceSlice = createSlice({
-  name: "service",
+  name: SLICE_NAMES.SERVICE,
   initialState,
   reducers: {
     resetAuthState: () => initialState,
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(getChats.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(getChats.fulfilled, (state, action) => {
-        state.status = "loaded";
-        state.chats = action.payload;
-      })
-      .addCase(getChats.rejected, (state) => {
-        state.status = "error";
-      });
+    builder.addCase(getChats.fulfilled, (state, action) => {
+      state.chats = action.payload?.map((chat) => ({
+        ...chat,
+        avatarSrc: null,
+      }));
+    });
+
+    addThunkMatchers(builder, getChats);
   },
 });
 

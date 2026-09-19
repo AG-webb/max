@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { StrictMode } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router";
-import { store } from "./store";
+import { store } from "./store/store";
 
 const Providers = ({ children }: { children: ReactNode }) => {
   return (

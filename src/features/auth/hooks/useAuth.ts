@@ -1,26 +1,23 @@
-import { useAppDispatch, useAppSelector } from "@/app/store";
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import {
+  actionResultSelector,
   authenticatedSelector,
-  errorSelector,
   qrCodeSelector,
-  statusSelector,
 } from "../model/authSelectors";
 
 export const useAuth = () => {
   const qrCode = useAppSelector(qrCodeSelector);
-  const status = useAppSelector(statusSelector);
+  const actionResult = useAppSelector(actionResultSelector);
   const authenticated = useAppSelector(authenticatedSelector);
   const isAuthenticated =
     authenticated === "authorized" || authenticated === "suspended";
-  const error = useAppSelector(errorSelector);
   const dispatch = useAppDispatch();
 
   return {
     qrCode,
-    status,
+    actionResult,
     isAuthenticated,
     authenticated,
-    error,
     dispatch,
   };
 };

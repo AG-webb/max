@@ -1,18 +1,23 @@
-import type { StatusType } from "@/types";
+import type { ChatHistory } from "@/features/journals/types";
+import type { DefaultStateType } from "@/types";
 
 export type AvatarResponse = {
   urlAvatar: string;
-}
+};
 
 export type Chat = {
   chatId: string;
   name: string;
   type: string;
   phoneNumber: number;
+  username: string;
+  avatarSrc: string | null;
 };
 
-export interface serviceState {
+export type ChatCellProps = Chat & {
+  lastMessage: ChatHistory | null;
+};
+
+export interface serviceState extends DefaultStateType {
   chats: Chat[] | null;
-  error: string | null;
-  status: StatusType;
 }

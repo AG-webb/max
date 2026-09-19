@@ -1,5 +1,4 @@
-import type { RootState } from "@/app/store";
+import type { RootState } from "@/app/store/store";
 
 export const chatsSelector = (state: RootState) => state.service.chats;
-export const statusSelector = (state: RootState) => state.service.status;
-export const errorSelector = (state: RootState) => state.service.error;
+export const actionResultSelector = (state: RootState) => state.service.actionResult;

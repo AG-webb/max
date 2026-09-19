@@ -10,4 +10,6 @@ export const serviceApi = {
       method: "post",
       data: { chatId },
     }),
+  getLastIncomingMessages: () =>
+    api.get(`lastIncomingMessages/${import.meta.env.VITE_API_TOKEN_INSTANCE}`),
 };

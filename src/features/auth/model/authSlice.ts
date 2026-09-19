@@ -1,3 +1,8 @@
+import {
+  DEFAULT_ACTION_RESULT,
+  SLICE_NAMES,
+} from "@/app/store/store.constants";
+import { addThunkMatchers } from "@/app/store/utils/addThunkMatchers";
 import { createSlice } from "@reduxjs/toolkit";
 import type { AuthState } from "../types";
 import { getQrCode, getStateInstance } from "./authThunks";
@@ -5,39 +10,26 @@ import { getQrCode, getStateInstance } from "./authThunks";
 const initialState: AuthState = {
   qrCode: null,
   authenticated: null,
-  error: null,
-  status: "idle",
+  actionResult: DEFAULT_ACTION_RESULT,
 };
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: SLICE_NAMES.AUTH,
   initialState,
   reducers: {
     resetAuthState: () => initialState,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getQrCode.pending, (state) => {
-        state.status = "loading";
-      })
       .addCase(getQrCode.fulfilled, (state, action) => {
-        state.status = "loaded";
         state.qrCode = action.payload;
       })
-      .addCase(getQrCode.rejected, (state) => {
-        state.status = "error";
-      })
-
-      .addCase(getStateInstance.pending, (state) => {
-        state.status = "loading";
-      })
       .addCase(getStateInstance.fulfilled, (state, action) => {
-        state.status = "loaded";
         state.authenticated = action.payload.stateInstance;
-      })
-      .addCase(getStateInstance.rejected, (state) => {
-        state.status = "error";
       });
+
+    addThunkMatchers(builder, getQrCode);
+    addThunkMatchers(builder, getStateInstance);
   },
 });
 

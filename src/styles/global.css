@@ -29,6 +29,7 @@
   --color-divider-primary: var(--divider-primary);
   --color-divider-secondary: var(--divider-secondary);
   --color-card-hover: var(--background-card-hover);
+  --color-button-primary: var(--button-primary);
 }
 
 /* for iphone when set overflow: hidden + border-radius */

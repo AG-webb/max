@@ -8,7 +8,7 @@ import { resetAuthState } from "../model/authSlice";
 import { getStateInstance } from "../model/authThunks";
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const { authenticated, status, dispatch } = useAuth();
+  const { authenticated, actionResult, dispatch } = useAuth();
 
   useEffect(() => {
     if (authenticated === null) {
@@ -16,7 +16,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [authenticated, dispatch]);
 
-  if (status === "idle") {
+  if (actionResult.status === "idle") {
     return <PageLoader />;
   }
 

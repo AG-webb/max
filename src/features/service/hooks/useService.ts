@@ -1,20 +1,17 @@
-import { useAppDispatch, useAppSelector } from "@/app/store";
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import {
+  actionResultSelector,
   chatsSelector,
-  errorSelector,
-  statusSelector,
 } from "../model/serviceSelectors";
 
 export const useService = () => {
   const chats = useAppSelector(chatsSelector);
-  const status = useAppSelector(statusSelector);
-  const error = useAppSelector(errorSelector);
+  const actionResult = useAppSelector(actionResultSelector);
   const dispatch = useAppDispatch();
 
   return {
     chats,
-    status,
-    error,
+    actionResult,
     dispatch,
   };
 };
