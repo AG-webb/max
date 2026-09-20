@@ -8,10 +8,4 @@ export const journalsApi = {
       method: "post",
       data: { chatId, count },
     }),
-  getLastMessage: (chatId: string) =>
-    api<ChatHistory[]>({
-      url: `getChatHistory/${import.meta.env.VITE_API_TOKEN_INSTANCE}`,
-      method: "post",
-      data: { chatId, count: 1 },
-    }),
 };

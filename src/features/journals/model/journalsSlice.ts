@@ -3,8 +3,8 @@ import {
   SLICE_NAMES,
 } from "@/app/store/store.constants";
 import { addThunkMatchers } from "@/app/store/utils/addThunkMatchers";
-import { createSlice } from "@reduxjs/toolkit";
-import type { JournalsState } from "../types";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { ChatHistory, JournalsState } from "../types";
 import { getChatHistory } from "./journalsThunks";
 
 const initialState: JournalsState = {
@@ -17,8 +17,12 @@ export const journalsSlice = createSlice({
   initialState,
   reducers: {
     resetAuthState: () => initialState,
-    setChatHistory: (state) => {
-      state.chatHistory = null;
+    setChatHistory: (state, action: PayloadAction<ChatHistory[]>) => {
+      if (state.chatHistory) {
+        state.chatHistory = [...state.chatHistory, ...action.payload];
+      } else {
+        state.chatHistory = action.payload;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -30,6 +34,6 @@ export const journalsSlice = createSlice({
   },
 });
 
-export const { resetAuthState } = journalsSlice.actions;
+export const { resetAuthState, setChatHistory } = journalsSlice.actions;
 
 export default journalsSlice.reducer;

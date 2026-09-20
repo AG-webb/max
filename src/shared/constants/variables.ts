@@ -1,0 +1,1 @@
+export const devMaxItems = 1;

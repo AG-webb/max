@@ -1,13 +1,27 @@
 import ChatCell from "@/components/ui/ChatCell";
 import { useJournals } from "@/features/journals/hooks/useJournals";
+import { setChatHistory } from "@/features/journals/model/journalsSlice";
 import { useService } from "@/features/service/hooks/useService";
 import { getChats } from "@/features/service/model/serviceThunks";
+import { devMaxItems } from "@/shared/constants";
 import clsx from "clsx";
 import { useEffect } from "react";
 
 const Aside = ({ className }: { className?: string }) => {
   const { chats, dispatch } = useService();
-  const { chatHistory } = useJournals();
+  const { chatHistory, loadChatsLastMessage } = useJournals();
+
+  useEffect(() => {
+    async function loadMessages() {
+      if (chats) {
+        loadChatsLastMessage(chats, (lastMessage) => {
+          dispatch(setChatHistory(lastMessage));
+        });
+      }
+    }
+
+    loadMessages();
+  }, [chats, dispatch, loadChatsLastMessage]);
 
   useEffect(() => {
     if (chats === null) {
@@ -33,17 +47,13 @@ const Aside = ({ className }: { className?: string }) => {
       <div className="aside__chats overflow-x-scroll">
         {chats?.map((chat, index) => {
           // REMOVE!! STATEMENT FOR NOT TO OVERLOAD NETWORK
-          if (index > 1) return;
+          if (index > devMaxItems) return;
           const lastMessage =
             chatHistory?.find((history) => history.chatId === chat.chatId) ||
             null;
 
           return (
-            <ChatCell
-              key={chat.chatId}
-              lastMessage={lastMessage}
-              {...chat}
-            />
+            <ChatCell key={chat.chatId} lastMessage={lastMessage} {...chat} />
           );
         })}
       </div>

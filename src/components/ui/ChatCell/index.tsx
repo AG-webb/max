@@ -1,5 +1,5 @@
 import type { ChatCellProps } from "@/features/service/types";
-import { convertUnixToDate } from "@/shared/utils";
+import { convertTimestampToDate } from "@/shared/utils";
 import clsx from "clsx";
 import Avatar from "../Avatar";
 
@@ -20,7 +20,7 @@ const ChatCell = ({ name, lastMessage, avatarSrc }: ChatCellProps) => {
           <div>{name}</div>
           <div>
             {lastMessage?.timestamp
-              ? convertUnixToDate(lastMessage?.timestamp)
+              ? convertTimestampToDate(lastMessage?.timestamp)
               : ""}
           </div>
         </div>
@@ -29,7 +29,9 @@ const ChatCell = ({ name, lastMessage, avatarSrc }: ChatCellProps) => {
             ? "Video message"
             : lastMessage?.typeMessage === "audioMessage"
               ? "Audio message"
-              : lastMessage?.textMessage}
+              : lastMessage?.typeMessage === "reactionMessage"
+                ? `Reacted to message ${lastMessage.extendedTextMessageData.text}`
+                : lastMessage?.textMessage}
         </div>
       </div>
     </button>
