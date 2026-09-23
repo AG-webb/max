@@ -1,38 +1,28 @@
 import ChatCell from "@/components/ui/ChatCell";
+import ChatsSkeleton from "@/components/ui/ChatsSkeleton";
 import { useJournals } from "@/features/journals/hooks/useJournals";
-import { setChatHistory } from "@/features/journals/model/journalsSlice";
 import { useService } from "@/features/service/hooks/useService";
-import { getChats } from "@/features/service/model/serviceThunks";
-import { devMaxItems } from "@/shared/constants";
+import { addLastMessage } from "@/features/service/model/serviceSlice";
+import { ACTION_TYPES } from "@/features/service/model/serviceThunks";
 import clsx from "clsx";
 import { useEffect } from "react";
 
 const Aside = ({ className }: { className?: string }) => {
-  const { chats, dispatch } = useService();
-  const { chatHistory, loadChatsLastMessage } = useJournals();
+  const { chats, lastMessages, handleIsLoading, dispatch } = useService();
+  const { loadChatsLastMessage } = useJournals();
 
   useEffect(() => {
-    async function loadMessages() {
-      if (chats) {
-        loadChatsLastMessage(chats, (lastMessage) => {
-          dispatch(setChatHistory(lastMessage));
-        });
-      }
+    if (chats) {
+      loadChatsLastMessage(chats, (lastMessage) => {
+        dispatch(addLastMessage(lastMessage));
+      });
     }
-
-    loadMessages();
-  }, [chats, dispatch, loadChatsLastMessage]);
-
-  useEffect(() => {
-    if (chats === null) {
-      dispatch(getChats());
-    }
-  }, [chats, dispatch]);
+  }, [chats, loadChatsLastMessage, dispatch]);
 
   return (
     <aside
       className={clsx(
-        "aside shrink-0 bg-dark-primary border-r border-r-divider-secondary overflow-hidden lg:w-(--aside-width)",
+        "aside bg-dark-primary border-r border-r-divider-secondary overflow-hidden lg:w-(--aside-width)",
         "flex flex-col w-full",
         className,
       )}
@@ -45,17 +35,19 @@ const Aside = ({ className }: { className?: string }) => {
         <div className="pb-2">Search</div>
       </div>
       <div className="aside__chats overflow-x-scroll">
-        {chats?.map((chat, index) => {
-          // REMOVE!! STATEMENT FOR NOT TO OVERLOAD NETWORK
-          if (index > devMaxItems) return;
-          const lastMessage =
-            chatHistory?.find((history) => history.chatId === chat.chatId) ||
-            null;
+        {handleIsLoading(ACTION_TYPES.GET_CHATS) ? (
+          <ChatsSkeleton />
+        ) : (
+          chats?.map((chat) => {
+            const lastMessage =
+              lastMessages?.find((message) => message.chatId === chat.chatId) ||
+              null;
 
-          return (
-            <ChatCell key={chat.chatId} lastMessage={lastMessage} {...chat} />
-          );
-        })}
+            return (
+              <ChatCell key={chat.chatId} lastMessage={lastMessage} {...chat} />
+            );
+          })
+        )}
       </div>
     </aside>
   );

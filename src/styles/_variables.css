@@ -21,6 +21,10 @@
   --min-mobile-xs: 451px;
 
   /* Background */
+  --skeleton-bg-color: #282829;
+  --skeleton-shimmer-color: #fff6;
+  --background-surface: #0f0f12;
+  --background-surface: #0f0f12;
   --background-surface: #0f0f12;
   --background-primary: #17181c;
   --background-secondary: #25262d;
@@ -79,6 +83,14 @@
   --stroke-snap-guide: #007aff;
   --divider-primary: #ffffff1f;
   --divider-secondary: #ffffff0f;
+
+  --primary-gradient-step-1: #8849b4;
+  --primary-gradient-step-2: #735acd;
+  --primary-gradient-step-3: #5d6ae5;
+
+  --secondary-gradient-step-1: #3b3f5e;
+  --secondary-gradient-step-2: #373a4e;
+  --secondary-gradient-step-3: #32343d;
 
   /* hover */
   --background-card-hover: #32343d;

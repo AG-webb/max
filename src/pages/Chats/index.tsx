@@ -15,7 +15,7 @@ const Chats = () => {
     >
       <Nav className={clsx(chatId ? "max-lg:hidden" : "")} />
       <Aside className={clsx(chatId ? "max-lg:hidden" : "")} />
-      <main className={clsx("main grow", !chatId ? "max-lg:hidden" : "")}>
+      <main className={clsx("main", !chatId ? "max-lg:hidden" : "")}>
         <Outlet />
       </main>
     </div>

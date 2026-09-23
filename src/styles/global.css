@@ -23,13 +23,14 @@
 @theme inline {
   --color-neutral-primary: var(--text-primary);
   --color-neutral-secondary: var(--text-secondary);
+  --color-neutral-tertiary: var(--text-tertiary);
   --color-dark-primary: var(--background-primary);
   --color-dark-secondary: var(--background-secondary);
   --color-dark-surface: var(--background-surface);
+  --color-button-primary: var(--button-primary);
   --color-divider-primary: var(--divider-primary);
   --color-divider-secondary: var(--divider-secondary);
   --color-card-hover: var(--background-card-hover);
-  --color-button-primary: var(--button-primary);
 }
 
 /* for iphone when set overflow: hidden + border-radius */

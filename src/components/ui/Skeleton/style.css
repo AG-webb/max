@@ -1,0 +1,21 @@
+.skeleton {
+  animation: skeleton-shimmer 2.5s ease-out infinite;
+  background: linear-gradient(
+    100deg,
+    var(--skeleton-bg-color),
+    var(--skeleton-bg-color) 50%,
+    var(--skeleton-shimmer-color) 60%,
+    var(--skeleton-bg-color) 70%
+  );
+  background-size: 200% 100%;
+  background-attachment: fixed;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position-x: 200%;
+  }
+  100% {
+    background-position-x: 0%;
+  }
+}

@@ -20,4 +20,5 @@ export type ChatCellProps = Chat & {
 
 export interface serviceState extends DefaultStateType {
   chats: Chat[] | null;
+  lastMessages: ChatHistory[] | null;
 }

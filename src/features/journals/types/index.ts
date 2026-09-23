@@ -7,12 +7,17 @@ import type {
 
 export interface JournalsState {
   actionResult: ActionResultType;
-  chatHistory: ChatHistory[] | null;
+  chatsHistory: { [chatId: string]: ChatHistory[] } | null;
 }
 
 export type ChatHistoryData = {
   chatId: string;
-  count: number;
+  count?: number;
+};
+
+export type LastMessageData = {
+  chatId: string;
+  lastMessage: ChatHistory;
 };
 
 export type OutgoingHistory = {

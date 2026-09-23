@@ -1,10 +1,12 @@
 import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import { actionResultSelector } from "@/features/auth/model/authSelectors";
+import { getChats } from "@/features/service/model/serviceThunks";
 import type { Chat } from "@/features/service/types";
 import { devMaxItems } from "@/shared/constants";
 import { delay } from "@/shared/utils";
+import { useEffect } from "react";
 import { journalsApi } from "../api/journals.api";
-import { chatHistorySelector } from "../model/journalsSelectors";
+import { chatsHistorySelector } from "../model/journalsSelectors";
 import type { ChatHistory } from "../types";
 
 async function loadChatsLastMessage(
@@ -16,12 +18,12 @@ async function loadChatsLastMessage(
       // REMOVE!! STATEMENT FOR NOT TO OVERLOAD NETWORK
       if (index > devMaxItems) return;
 
-      const lastMessage = await journalsApi.getChatHistory({
+      const response = await journalsApi.getChatHistory({
         chatId: chat.chatId,
         count: 1,
       });
 
-      onUpdate(lastMessage.data ?? []);
+      onUpdate(response.data ?? []);
     } catch (error) {
       console.error(`Failed to load last message of ${chat.chatId}`, error);
     }
@@ -33,12 +35,16 @@ async function loadChatsLastMessage(
 }
 
 export const useJournals = () => {
-  const chatHistory = useAppSelector(chatHistorySelector);
+  const chatsHistory = useAppSelector(chatsHistorySelector);
   const actionResult = useAppSelector(actionResultSelector);
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    dispatch(getChats());
+  }, [dispatch]);
+
   return {
-    chatHistory,
+    chatsHistory,
     actionResult,
     loadChatsLastMessage,
     dispatch,

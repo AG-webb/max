@@ -1,0 +1,23 @@
+.chat-cell {
+  &:hover,
+  &__wrap:focus {
+    --chat-cell-time-opacity: 0;
+    --chat-cell-time-visibility: hidden;
+    --chat-cell-time-pointer-events: none;
+    --chat-cell-options-opacity: 1;
+    --chat-cell-options-visibility: visible;
+    --chat-cell-options-pointer-events: auto;
+  }
+
+  &__time {
+    opacity: var(--chat-cell-time-opacity);
+    visibility: var(--chat-cell-time-visibility);
+    pointer-events: var(--chat-cell-time-pointer-events);
+  }
+
+  &__options {
+    opacity: var(--chat-cell-options-opacity, 0);
+    visibility: var(--chat-cell-options-visibility, hidden);
+    pointer-events: var(--chat-cell-options-pointer-events, none);
+  }
+}

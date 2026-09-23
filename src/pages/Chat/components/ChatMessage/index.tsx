@@ -1,0 +1,53 @@
+import { getLastMessageText } from "@/components/ui/ChatCell/getLastMessageText";
+import type { ChatHistory } from "@/features/journals/types";
+import { convertTimestampToDate } from "@/shared/utils";
+import clsx from "clsx";
+import type { CSSProperties } from "react";
+import "./style.css";
+
+// const ChatMessage = ({ type, textMessage, timestamp }: ChatHistory) => {
+const ChatMessage = (props: ChatHistory) => {
+  const { type, timestamp } = props;
+  const isEdited = true;
+  const outgoingClasses = "chat-message_outgoing text-right";
+  const incomingClasses = "chat-message_incoming";
+
+  return (
+    <div
+      className={clsx(
+        "chat-message py-1",
+        type === "outgoing" ? outgoingClasses : incomingClasses,
+      )}
+      style={
+        {
+          "--chat-message-info-width": isEdited ? "90px" : "70px",
+        } as CSSProperties
+      }
+    >
+      <div className="chat-message__wrap text-left inline-block bg-(image:--chat-message-wrap-bg) relative max-w-[70%] rounded-2xl pt-2 px-2.5 pb-2.5 overflow-hidden">
+        <span className="chat-message__body relative inline-block">
+          {getLastMessageText(props)}
+        </span>
+        <div className="chat-message__info absolute bottom-2.5 right-2.5 shrink-0 flex items-center gap-0.5 -mb-1.5">
+          <div className="chat-message__time text-neutral-tertiary leading-3.5 text-[11px]">
+            {convertTimestampToDate(timestamp)} Ed.
+          </div>
+          {type === "outgoing" ? (
+            <div className="chat-message__status">
+              <svg width="16" height="16" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  fillRule="evenodd"
+                  d="M18.09 5.589a.9.9 0 0 1 0 1.272L7.063 17.886a.9.9 0 0 1-1.273 0L1.884 13.98a.9.9 0 0 1 1.273-1.273l3.27 3.271L16.818 5.59a.9.9 0 0 1 1.272 0"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ChatMessage;

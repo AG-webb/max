@@ -5,7 +5,7 @@ const Nav = ({ className }: { className?: string }) => {
     <nav
       aria-label="Nav bar"
       className={clsx(
-        "nav shrink-0 w-full bg-dark-primary border-r border-r-divider-secondary lg:w-(--nav-width) lg:px-1 lg:py-4",
+        "nav w-full bg-dark-primary border-r border-r-divider-secondary lg:w-(--nav-width) lg:px-1 lg:py-4",
         "max-lg:fixed max-lg:bottom-0 max-lg:left-0",
         className,
       )}
