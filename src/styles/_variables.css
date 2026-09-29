@@ -24,8 +24,6 @@
   --skeleton-bg-color: #282829;
   --skeleton-shimmer-color: #fff6;
   --background-surface: #0f0f12;
-  --background-surface: #0f0f12;
-  --background-surface: #0f0f12;
   --background-primary: #17181c;
   --background-secondary: #25262d;
   --background-tertiary: #ffffff17;
@@ -91,6 +89,10 @@
   --secondary-gradient-step-1: #3b3f5e;
   --secondary-gradient-step-2: #373a4e;
   --secondary-gradient-step-3: #32343d;
+
+  --tertiary-gradient-step-1: #373a4ea3;
+  --tertiary-gradient-step-2: #373a4ee0;
+  --tertiary-gradient-step-3: #373a4ee0;
 
   /* hover */
   --background-card-hover: #32343d;

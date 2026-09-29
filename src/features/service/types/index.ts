@@ -1,5 +1,5 @@
 import type { ChatHistory } from "@/features/journals/types";
-import type { DefaultStateType } from "@/types";
+import type { ChatType, DefaultStateType } from "@/types";
 
 export type AvatarResponse = {
   urlAvatar: string;
@@ -8,7 +8,7 @@ export type AvatarResponse = {
 export type Chat = {
   chatId: string;
   name: string;
-  type: string;
+  type: ChatType;
   phoneNumber: number;
   username: string;
   avatarSrc: string | null;

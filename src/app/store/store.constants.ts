@@ -10,4 +10,5 @@ export const SLICE_NAMES = {
   AUTH: "auth",
   SERVICE: "service",
   JOURNALS: "journals",
+  SENDING: "sending",
 };

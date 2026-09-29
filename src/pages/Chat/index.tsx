@@ -1,30 +1,23 @@
 import Avatar from "@/components/ui/Avatar";
 import PageLoader from "@/components/ui/PageLoader";
 import { useJournals } from "@/features/journals/hooks/useJournals";
-import { getChatHistory } from "@/features/journals/model/journalsThunks";
 import { useService } from "@/features/service/hooks/useService";
 import { ROUTES } from "@/shared/constants";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Link, useParams } from "react-router";
 import ChatInput from "./components/ChatInput";
-import ChatMessages from "./components/ChatMesages";
+import ChatMessages from "./components/ChatMessages";
 
 const Chat = () => {
   const { chatId } = useParams();
-  const { chats, dispatch } = useService();
+  const { chats } = useService();
   const { chatsHistory } = useJournals();
   const chatMessagesRef = useRef<HTMLDivElement | null>(null);
 
   const currentChat = chats?.find((chat) => chat.chatId === chatId);
   const currentChatHistory = chatsHistory && chatId && chatsHistory[chatId];
 
-  useEffect(() => {
-    if (chatId) {
-      dispatch(getChatHistory({ chatId }));
-    }
-  }, [chatId, dispatch]);
-
-  if (!currentChat) {
+  if (!currentChat || !chatId) {
     return <PageLoader className="min-h-screen" />;
   }
 
@@ -59,15 +52,19 @@ const Chat = () => {
       <div className="chat__body grid grid-rows-1 px-4">
         <div className="chat__body-wrap w-full max-w-175 mx-auto grid grid-rows-[minmax(0,1fr)_64px]">
           <div
-            className="chat__messages overflow-y-scroll"
+            className="chat__messages pb-4 overflow-y-scroll scrollbar-none"
             ref={chatMessagesRef}
           >
-            {currentChatHistory && currentChatHistory?.length ? (
-              <ChatMessages key={chatId} history={currentChatHistory} chatMessagesRef={chatMessagesRef} />
+            {currentChatHistory ? (
+              <ChatMessages
+                key={chatId}
+                history={currentChatHistory}
+                chatMessagesRef={chatMessagesRef}
+              />
             ) : null}
           </div>
           <div className="chat__input">
-            <ChatInput />
+            <ChatInput chatId={chatId} chatType={currentChat.type} />
           </div>
         </div>
       </div>

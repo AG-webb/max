@@ -1,5 +1,6 @@
 import authReducer from "@/features/auth/model/authSlice";
 import journalsReducer from "@/features/journals/model/journalsSlice";
+import sendingReducer from "@/features/sending/model/sendingSlice";
 import serviceReducer from "@/features/service/model/serviceSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +10,9 @@ export const store = configureStore({
     auth: authReducer,
     service: serviceReducer,
     journals: journalsReducer,
+    sending: sendingReducer,
   },
+  devTools: import.meta.env.DEV,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

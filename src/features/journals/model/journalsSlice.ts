@@ -4,8 +4,8 @@ import {
 } from "@/app/store/store.constants";
 import { addThunkMatchers } from "@/app/store/utils/addThunkMatchers";
 import { mergeMessages } from "@/shared/utils";
-import { createSlice } from "@reduxjs/toolkit";
-import type { JournalsState } from "../types";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { ChatHistory, JournalsState } from "../types";
 import { getChatHistory } from "./journalsThunks";
 
 const initialState: JournalsState = {
@@ -18,6 +18,20 @@ export const journalsSlice = createSlice({
   initialState,
   reducers: {
     resetAuthState: () => initialState,
+    addSendedMessageToHistory: (state, action: PayloadAction<ChatHistory>) => {
+      const message = action.payload;
+
+      if (state.chatsHistory) {
+        state.chatsHistory[message.chatId] = mergeMessages(
+          state.chatsHistory[message.chatId],
+          [message],
+        );
+      } else {
+        state.chatsHistory = {
+          [message.chatId]: mergeMessages([], [message]),
+        };
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getChatHistory.fulfilled, (state, action) => {
@@ -39,6 +53,7 @@ export const journalsSlice = createSlice({
   },
 });
 
-export const { resetAuthState } = journalsSlice.actions;
+export const { resetAuthState, addSendedMessageToHistory } =
+  journalsSlice.actions;
 
 export default journalsSlice.reducer;

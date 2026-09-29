@@ -11,12 +11,17 @@ import type { ChatHistory } from "../types";
 
 async function loadChatsLastMessage(
   chats: Chat[],
+  isSomeChatOpen: boolean,
   onUpdate: (lastMessage: ChatHistory[]) => void,
 ) {
   for (const [index, chat] of chats.entries()) {
     try {
       // REMOVE!! STATEMENT FOR NOT TO OVERLOAD NETWORK
       if (index > devMaxItems) return;
+
+      if (isSomeChatOpen && index === 0) {
+        await delay(1100);
+      }
 
       const response = await journalsApi.getChatHistory({
         chatId: chat.chatId,

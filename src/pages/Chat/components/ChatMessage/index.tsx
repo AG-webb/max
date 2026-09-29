@@ -1,16 +1,27 @@
-import { getLastMessageText } from "@/components/ui/ChatCell/getLastMessageText";
-import type { ChatHistory } from "@/features/journals/types";
+import Avatar from "@/components/ui/Avatar";
+import type {
+  ChatHistoryWithReactions,
+  QuotedTypeHistory,
+  ReactionTypeHistory,
+} from "@/features/journals/types";
 import { convertTimestampToDate } from "@/shared/utils";
 import clsx from "clsx";
-import type { CSSProperties } from "react";
+import { type CSSProperties } from "react";
 import "./style.css";
+import { getMessage } from "./utils/getMessage";
+import { returnGroupReactions } from "./utils/returnGroupReactions";
 
-// const ChatMessage = ({ type, textMessage, timestamp }: ChatHistory) => {
-const ChatMessage = (props: ChatHistory) => {
-  const { type, timestamp } = props;
-  const isEdited = true;
+const ChatMessage = (
+  props: Exclude<
+    ChatHistoryWithReactions,
+    QuotedTypeHistory | ReactionTypeHistory
+  >,
+) => {
+  const { type, timestamp, isEdited, reactions } = props;
   const outgoingClasses = "chat-message_outgoing text-right";
   const incomingClasses = "chat-message_incoming";
+
+  const groupReaction = reactions ? returnGroupReactions(reactions) : [];
 
   return (
     <div
@@ -26,11 +37,38 @@ const ChatMessage = (props: ChatHistory) => {
     >
       <div className="chat-message__wrap text-left inline-block bg-(image:--chat-message-wrap-bg) relative max-w-[70%] rounded-2xl pt-2 px-2.5 pb-2.5 overflow-hidden">
         <span className="chat-message__body relative inline-block">
-          {getLastMessageText(props)}
+          {getMessage(props)}
         </span>
+        <div>
+          {reactions?.length ? (
+            <div className="chat-message__reactions flex gap-1">
+              {groupReaction.map((reaction) => {
+                console.log(reaction);
+                return null;
+              })}
+              {groupReaction.map((reaction) => (
+                <div className="inline-flex gap-0.5 bg-dark-surface py-1 px-2 rounded-2xl" key={reaction.emoji}>
+                  <span>{reaction.emoji}</span>
+                  {reaction.participants.length ? (
+                    <div className="flex">
+                      {reaction.participants.map((participant) => (
+                        <Avatar
+                          size="extra-small"
+                          key={participant.senderId}
+                          src={""}
+                          name={participant.senderName}
+                        />
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </div>
         <div className="chat-message__info absolute bottom-2.5 right-2.5 shrink-0 flex items-center gap-0.5 -mb-1.5">
           <div className="chat-message__time text-neutral-tertiary leading-3.5 text-[11px]">
-            {convertTimestampToDate(timestamp)} Ed.
+            {convertTimestampToDate(timestamp)} {isEdited && "Ed"}
           </div>
           {type === "outgoing" ? (
             <div className="chat-message__status">

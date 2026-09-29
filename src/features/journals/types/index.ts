@@ -1,8 +1,14 @@
 import type {
   ActionResultType,
   ChatType,
+  ExtendedTextMessageType,
+  FileMessageType,
   MessageType,
+  PollMessageType,
+  QuotedMessageType,
+  ReactionMessageType,
   StatusMessageType,
+  TextMessageType,
 } from "@/types";
 
 export interface JournalsState {
@@ -28,9 +34,51 @@ export type OutgoingHistory = {
 
 export type IncomingHistory = {
   type: "incoming";
+  senderId: string;
   senderName: string;
   senderType: ChatType;
   senderContactName: string;
+};
+
+export type TextTypeHistory = {
+  typeMessage: TextMessageType;
+  textMessage: string;
+};
+
+export type ExtendedTextTypeHistory = {
+  typeMessage: ExtendedTextMessageType;
+  textMessage: string;
+  extendedTextMessage: ExtendedTextMessage;
+};
+
+export type FileTypeHistory = {
+  typeMessage: FileMessageType;
+  downloadUrl: string;
+  downloadUrlJpeg: string;
+  caption: string;
+  fileName: string;
+  jpegThumbnail: string;
+  mimeType: string;
+  isAnimated: boolean;
+};
+
+export type ReactionTypeHistory = {
+  typeMessage: ReactionMessageType;
+  extendedTextMessageData: ExtendedTextMessageData;
+  quotedMessage: QuotedMessage;
+  senderId: string;
+  senderName: string;
+  senderContactName: string;
+};
+
+export type QuotedTypeHistory = {
+  typeMessage: QuotedMessageType;
+  quotedMessage: QuotedMessage;
+};
+
+export type PollTypeHistory = {
+  typeMessage: PollMessageType;
+  pollMessageData: PollMessageData;
 };
 
 export type ChatHistory = {
@@ -41,23 +89,34 @@ export type ChatHistory = {
   chatType: ChatType;
   isForwarded: boolean;
   forwardingScore: number;
-  textMessage: string;
-  downloadUrl: string;
-  downloadUrlJpeg: string;
-  caption: string;
-  fileName: string;
-  jpegThumbnail: string;
-  mimeType: string;
-  isAnimated: boolean;
-  extendedTextMessage: ExtendedTextMessage;
-  extendedTextMessageData: ExtendedTextMessageData;
-  pollMessageData: PollMessageData;
-  quotedMessage: QuotedMessage;
   deletedMessageId: string;
   editedMessageId: string;
   isEdited: boolean;
   isDeleted: boolean;
-} & (OutgoingHistory | IncomingHistory);
+} & (OutgoingHistory | IncomingHistory) &
+  (
+    | TextTypeHistory
+    | ExtendedTextTypeHistory
+    | FileTypeHistory
+    | ReactionTypeHistory
+    | QuotedTypeHistory
+    | PollTypeHistory
+  );
+
+export type ChatHistoryWithReactions = Exclude<
+  ChatHistory,
+  ReactionTypeHistory
+> & {
+  reactions?: Reaction[];
+};
+
+export type Reaction = {
+  emoji: string;
+  idMessage: string;
+  participants: ReactionParticipant[];
+};
+
+export type ReactionParticipant = Omit<IncomingHistory, "type" | "senderType">;
 
 interface ExtendedTextMessage {
   text: string;

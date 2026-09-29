@@ -1,0 +1,8 @@
+.empty-messages {
+  background: radial-gradient(
+    269% 141% at 0% 0%,
+    var(--tertiary-gradient-step-1) 0%,
+    var(--tertiary-gradient-step-1) 50%,
+    var(--tertiary-gradient-step-1) 100%
+  );
+}

@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 
 const api = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL}/waInstance${import.meta.env.VITE_ID_INSTANCE}/`,
+  baseURL: `${import.meta.env.VITE_SERVER_URL}/api/`,
   headers: {
     "Content-Type": "application/json",
   },

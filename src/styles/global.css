@@ -11,7 +11,7 @@
     font-family:
       -apple-system, BlinkMacSystemFont, "Roboto", system-ui, Avenir, Helvetica,
       Arial, sans-serif;
-    background: var(--background-primary) url("@/assets/images/bg-pattern.svg")
+    background: var(--background-surface) url("@/assets/images/bg-pattern.svg")
       repeat;
   }
 }
@@ -31,6 +31,8 @@
   --color-divider-primary: var(--divider-primary);
   --color-divider-secondary: var(--divider-secondary);
   --color-card-hover: var(--background-card-hover);
+  --color-stroke-glass: var(--stroke-glass);
+  --color-icon-tertiary: var(--icon-tertiary);
 }
 
 /* for iphone when set overflow: hidden + border-radius */
