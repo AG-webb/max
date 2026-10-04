@@ -3,9 +3,12 @@ import {
   SLICE_NAMES,
 } from "@/app/store/store.constants";
 import { addThunkMatchers } from "@/app/store/utils/addThunkMatchers";
-import { mergeMessages } from "@/shared/utils";
+import type { Notification } from "@/features/notifications/types";
+import { createChatHistory } from "@/shared/utils";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { ChatHistory, JournalsState } from "../types";
+import { addChatHistory } from "../utils/addChatHistory";
+import { markHistoryAsDeletedOrEdited } from "../utils/markHistoryAsDeletedOrEdited";
 import { getChatHistory } from "./journalsThunks";
 
 const initialState: JournalsState = {
@@ -18,42 +21,62 @@ export const journalsSlice = createSlice({
   initialState,
   reducers: {
     resetAuthState: () => initialState,
-    addSendedMessageToHistory: (state, action: PayloadAction<ChatHistory>) => {
-      const message = action.payload;
+    notificationReceived: (state, action: PayloadAction<Notification>) => {
+      const notification = action.payload;
+      const { messageData } = notification;
 
-      if (state.chatsHistory) {
-        state.chatsHistory[message.chatId] = mergeMessages(
-          state.chatsHistory[message.chatId],
-          [message],
+      if (
+        messageData.typeMessage === "deletedMessage" ||
+        messageData.typeMessage === "editedMessage"
+      ) {
+        const isEdited = messageData.typeMessage === "editedMessage";
+        let historyId: string;
+
+        if (isEdited) {
+          const { editedMessageData } = messageData;
+          historyId = editedMessageData.stanzaId;
+        } else {
+          const { deletedMessageData } = messageData;
+          historyId = deletedMessageData.stanzaId;
+        }
+
+        markHistoryAsDeletedOrEdited(
+          state,
+          notification.senderData.chatId,
+          historyId,
+          isEdited,
         );
-      } else {
-        state.chatsHistory = {
-          [message.chatId]: mergeMessages([], [message]),
-        };
+
+        return;
       }
+
+      addChatHistory(
+        state,
+        notification.senderData.chatId,
+        createChatHistory(notification),
+      );
+    },
+    addSendedMessageToHistory: (state, action: PayloadAction<ChatHistory>) => {
+      const sendedMessage = action.payload;
+
+      addChatHistory(state, sendedMessage.chatId, sendedMessage);
     },
   },
   extraReducers: (builder) => {
     builder.addCase(getChatHistory.fulfilled, (state, action) => {
       const { chatId, history } = action.payload;
 
-      if (state.chatsHistory) {
-        state.chatsHistory[chatId] = mergeMessages(
-          state.chatsHistory[chatId],
-          history,
-        );
-      } else {
-        state.chatsHistory = {
-          [chatId]: mergeMessages([], history),
-        };
-      }
+      addChatHistory(state, chatId, history);
     });
 
     addThunkMatchers(builder, getChatHistory);
   },
 });
 
-export const { resetAuthState, addSendedMessageToHistory } =
-  journalsSlice.actions;
+export const {
+  resetAuthState,
+  addSendedMessageToHistory,
+  notificationReceived,
+} = journalsSlice.actions;
 
 export default journalsSlice.reducer;

@@ -1,15 +1,21 @@
+import type { ActionResultType } from "@/types";
 import type {
-  ActionResultType,
   ChatType,
+  DeletedMessage,
+  EditedMessage,
   ExtendedTextMessageType,
   FileMessageType,
   MessageType,
+  NonDeletedMessage,
+  NonEditedMessage,
   PollMessageType,
+  QuotedMessage,
   QuotedMessageType,
   ReactionMessageType,
   StatusMessageType,
   TextMessageType,
-} from "@/types";
+} from "@/types/chats";
+import type { ForwardedProps } from "./../../../types/chats/index";
 
 export interface JournalsState {
   actionResult: ActionResultType;
@@ -81,26 +87,25 @@ export type PollTypeHistory = {
   pollMessageData: PollMessageData;
 };
 
-export type ChatHistory = {
+export type ChatHistoryBase = {
   idMessage: string;
   timestamp: number;
-  typeMessage: MessageType;
   chatId: string;
   chatType: ChatType;
-  isForwarded: boolean;
-  forwardingScore: number;
-  deletedMessageId: string;
-  editedMessageId: string;
-  isEdited: boolean;
-  isDeleted: boolean;
-} & (OutgoingHistory | IncomingHistory) &
+};
+
+export type ChatHistory = {
+  typeMessage: MessageType;
+} & ChatHistoryBase &
+  (EditedMessage | NonEditedMessage) &
+  (DeletedMessage | NonDeletedMessage) &
+  (OutgoingHistory | IncomingHistory) &
   (
-    | TextTypeHistory
     | ExtendedTextTypeHistory
-    | FileTypeHistory
     | ReactionTypeHistory
     | QuotedTypeHistory
     | PollTypeHistory
+    | ((TextTypeHistory | FileTypeHistory) & ForwardedProps)
   );
 
 export type ChatHistoryWithReactions = Exclude<
@@ -118,27 +123,19 @@ export type Reaction = {
 
 export type ReactionParticipant = Omit<IncomingHistory, "type" | "senderType">;
 
-interface ExtendedTextMessage {
+export interface ExtendedTextMessage extends ForwardedProps {
   text: string;
   description: string;
   title: string;
   jpegThumbnail: string;
-  isForwarded: boolean;
-  forwardingScore: number;
 }
 
-interface ExtendedTextMessageData {
+export interface ExtendedTextMessageData {
   text: string;
 }
 
-interface PollMessageData {
+export interface PollMessageData {
   name: string;
   options: string[];
   allowToChangeAnswer: boolean;
-}
-
-interface QuotedMessage {
-  stanzaId: string;
-  participant: string;
-  typeMessage: string;
 }

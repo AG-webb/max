@@ -7,11 +7,8 @@ export const returnHistoryWithReactions = (history: ChatHistory[]) => {
   return history.reduce((messages, message): ChatHistoryWithReactions[] => {
     if (message.typeMessage === "reactionMessage") {
       const targetMessageId = message.quotedMessage.stanzaId;
-      // const participant = message.quotedMessage.participant;
-      const senderId = message.senderId;
-      const senderName = message.senderName;
-      const senderContactName = message.senderContactName;
       const emoji = message.extendedTextMessageData.text;
+      const { senderId, senderName, senderContactName } = message;
 
       if (!targetMessageId) {
         return messages;

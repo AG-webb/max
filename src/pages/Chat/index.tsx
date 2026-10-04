@@ -1,12 +1,48 @@
+import { useAppDispatch } from "@/app/store/store";
 import Avatar from "@/components/ui/Avatar";
 import PageLoader from "@/components/ui/PageLoader";
 import { useJournals } from "@/features/journals/hooks/useJournals";
+import { notificationReceived } from "@/features/journals/model/journalsSlice";
+import type { Notification } from "@/features/notifications/types";
 import { useService } from "@/features/service/hooks/useService";
 import { ROUTES } from "@/shared/constants";
 import { useRef } from "react";
 import { Link, useParams } from "react-router";
 import ChatInput from "./components/ChatInput";
 import ChatMessages from "./components/ChatMessages";
+
+const notification: Notification = {
+  typeWebhook: "incomingMessageReceived",
+  instanceData: {
+    idInstance: 3100000000,
+    wid: "79991234567@c.us",
+    typeInstance: "v3",
+  },
+  timestamp: 1790936853085,
+  idMessage: "1763115112347",
+  senderData: {
+    chatId: "8456469015",
+    chatName: "Armen",
+    chatType: "user",
+    sender: "10000000",
+    senderName: "Armen",
+    senderType: "user",
+    senderContactName: "Armen",
+    senderPhoneNumber: 79876543210,
+  },
+  messageData: {
+    typeMessage: "textMessage",
+    textMessageData: {
+      textMessage: "Test message goes here!!!",
+      isForwarded: false,
+      forwardingScore: 0,
+    },
+    // quotedMessage: {
+    //   stanzaId: "11",
+    //   participant: "asdsad",
+    // },
+  },
+};
 
 const Chat = () => {
   const { chatId } = useParams();
@@ -16,6 +52,12 @@ const Chat = () => {
 
   const currentChat = chats?.find((chat) => chat.chatId === chatId);
   const currentChatHistory = chatsHistory && chatId && chatsHistory[chatId];
+
+  const dispatch = useAppDispatch();
+
+  const handleClick = () => {
+    dispatch(notificationReceived(notification));
+  };
 
   if (!currentChat || !chatId) {
     return <PageLoader className="min-h-screen" />;
@@ -47,7 +89,9 @@ const Chat = () => {
             </div>
           </div>
         </div>
-        <div className="chat__actions"></div>
+        <div className="chat__actions">
+          <div className="ml-12 cursor-pointer bg-dark-secondary p-4" onClick={handleClick}>Notification</div>
+        </div>
       </div>
       <div className="chat__body grid grid-rows-1 px-4">
         <div className="chat__body-wrap w-full max-w-175 mx-auto grid grid-rows-[minmax(0,1fr)_64px]">

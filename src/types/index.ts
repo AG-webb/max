@@ -6,29 +6,6 @@ export type StateInstance =
   | "starting"
   | "suspended"
   | "pendingPassword";
-export type MessageViewType = "outgoing" | "incoming";
-export type StatusMessageType = "sent" | "delivered" | "read";
-
-export type TextMessageType = "textMessage";
-export type ExtendedTextMessageType = "extendedTextMessage";
-export type FileMessageType =
-  | "imageMessage"
-  | "videoMessage"
-  | "documentMessage"
-  | "audioMessage"
-  | "stickerMessage";
-export type PollMessageType = "pollMessage";
-export type ReactionMessageType = "reactionMessage";
-export type QuotedMessageType = "quotedMessage";
-export type MessageType =
-  | TextMessageType
-  | ExtendedTextMessageType
-  | FileMessageType
-  | PollMessageType
-  | ReactionMessageType
-  | QuotedMessageType;
-
-export type ChatType = "user" | "group" | "channel" | "bot";
 
 export type ActionResultType = {
   type: string;

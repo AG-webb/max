@@ -1,4 +1,5 @@
 import AuthProvider from "@/features/auth/providers/AuthProvider";
+import NotificationProvider from "@/features/notifications/providers/NotificationProvider";
 import type { ReactNode } from "react";
 import { StrictMode } from "react";
 import { Provider } from "react-redux";
@@ -10,7 +11,9 @@ const Providers = ({ children }: { children: ReactNode }) => {
     <StrictMode>
       <BrowserRouter>
         <Provider store={store}>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <NotificationProvider>{children}</NotificationProvider>
+          </AuthProvider>
         </Provider>
       </BrowserRouter>
     </StrictMode>

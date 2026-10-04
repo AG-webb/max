@@ -22,7 +22,6 @@ export const returnGroupReactions = (reactions: Reaction[]) => {
       } else {
         group = group.filter(
           (item) =>
-            item.idMessage !== reaction.idMessage &&
             !item.participants.some(
               (participant) =>
                 participant.senderId === reaction.participants[0].senderId,

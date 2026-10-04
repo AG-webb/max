@@ -1,6 +1,6 @@
 import { addSendedMessageToHistory } from "@/features/journals/model/journalsSlice";
 import { getApiError } from "@/services/api/api.errors";
-import type { ChatType } from "@/types";
+import type { ChatType } from "@/types/chats";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { sendingApi } from "../api/sending.api";
 import type { ChatHistory } from "./../../journals/types/index";
@@ -37,8 +37,6 @@ export const sendMessage = createAsyncThunk(
         isForwarded: false,
         forwardingScore: 0,
         textMessage: messageData.message,
-        deletedMessageId: "",
-        editedMessageId: "",
         isEdited: false,
         isDeleted: false,
       };
