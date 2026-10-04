@@ -1,6 +1,4 @@
-import type {
-  ChatHistory
-} from "@/features/journals/types";
+import type { ChatHistory } from "@/features/journals/types";
 
 export const getLastMessageText = (lastMessage: ChatHistory) => {
   switch (lastMessage.typeMessage) {
@@ -23,7 +21,7 @@ export const getLastMessageText = (lastMessage: ChatHistory) => {
       return lastMessage.pollMessageData.name;
     }
     case "quotedMessage": {
-      return lastMessage.quotedMessage;
+      return "Quoted message";
     }
     case "reactionMessage": {
       return `Reacted to message ${lastMessage.extendedTextMessageData.text}`;

@@ -3,7 +3,10 @@ import ChatsSkeleton from "@/components/ui/ChatsSkeleton";
 import { useJournals } from "@/features/journals/hooks/useJournals";
 import { getChatHistory } from "@/features/journals/model/journalsThunks";
 import { useService } from "@/features/service/hooks/useService";
-import { addLastMessage } from "@/features/service/model/serviceSlice";
+import {
+  addChatAvatar,
+  addLastMessage,
+} from "@/features/service/model/serviceSlice";
 import { ACTION_TYPES } from "@/features/service/model/serviceThunks";
 import clsx from "clsx";
 import { useEffect } from "react";
@@ -11,8 +14,10 @@ import { useParams } from "react-router";
 
 const Aside = ({ className }: { className?: string }) => {
   const { chatId } = useParams();
-  const { chats, lastMessages, handleIsLoading, dispatch } = useService();
+  const { chats, lastMessages, avatars, handleIsLoading, dispatch } =
+    useService();
   const { loadChatsLastMessage } = useJournals();
+  const { loadChatsAvatar } = useService();
 
   useEffect(() => {
     if (chats) {
@@ -21,6 +26,14 @@ const Aside = ({ className }: { className?: string }) => {
       });
     }
   }, [chats, chatId, loadChatsLastMessage, dispatch]);
+
+  useEffect(() => {
+    if (chats) {
+      loadChatsAvatar(chats, (urlAvatar, chatId) => {
+        dispatch(addChatAvatar({ urlAvatar, chatId }));
+      });
+    }
+  }, [chats, loadChatsAvatar, dispatch]);
 
   useEffect(() => {
     if (chatId) {
@@ -51,9 +64,15 @@ const Aside = ({ className }: { className?: string }) => {
             const lastMessage =
               lastMessages?.find((message) => message.chatId === chat.chatId) ||
               null;
+            const avatarSrc = avatars?.[chat.chatId] || null;
 
             return (
-              <ChatCell key={chat.chatId} lastMessage={lastMessage} {...chat} />
+              <ChatCell
+                key={chat.chatId}
+                lastMessage={lastMessage}
+                avatarSrc={avatarSrc}
+                {...chat}
+              />
             );
           })
         )}

@@ -5,12 +5,13 @@ import {
 import { addThunkMatchers } from "@/app/store/utils/addThunkMatchers";
 import type { ChatHistory } from "@/features/journals/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { Chat, serviceState } from "../types";
+import type { ServiceState } from "../types";
 import { getChats } from "./serviceThunks";
 
-const initialState: serviceState = {
+const initialState: ServiceState = {
   chats: null,
   lastMessages: null,
+  avatars: null,
   actionResult: DEFAULT_ACTION_RESULT,
 };
 
@@ -26,21 +27,31 @@ export const serviceSlice = createSlice({
         state.lastMessages = action.payload;
       }
     },
+    addChatAvatar: (
+      state,
+      action: PayloadAction<{ urlAvatar: string; chatId: string }>,
+    ) => {
+      if (state.chats) {
+        const { urlAvatar, chatId } = action.payload;
+
+        if (state.avatars) {
+          state.avatars[chatId] = urlAvatar;
+        } else {
+          state.avatars = { [chatId]: urlAvatar };
+        }
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getChats.fulfilled, (state, action) => {
-      state.chats = action.payload?.map(
-        (chat): Chat => ({
-          ...chat,
-          avatarSrc: null,
-        }),
-      );
+      state.chats = action.payload;
     });
 
     addThunkMatchers(builder, getChats);
   },
 });
 
-export const { resetAuthState, addLastMessage } = serviceSlice.actions;
+export const { resetAuthState, addLastMessage, addChatAvatar } =
+  serviceSlice.actions;
 
 export default serviceSlice.reducer;
