@@ -11,7 +11,7 @@ const Avatar = ({ size = "medium", src, name, className }: AvatarProps) => {
   return (
     <div
       className={clsx(
-        "rounded-full bg-dark-secondary flex items-center justify-center",
+        "rounded-full bg-dark-secondary flex items-center justify-center overflow-hidden",
         sizeClasses[size],
         className,
       )}

@@ -46,7 +46,7 @@ const notification: Notification = {
 
 const Chat = () => {
   const { chatId } = useParams();
-  const { chats } = useService();
+  const { chats, avatars } = useService();
   const { chatsHistory } = useJournals();
   const chatMessagesRef = useRef<HTMLDivElement | null>(null);
 
@@ -63,6 +63,8 @@ const Chat = () => {
     return <PageLoader className="min-h-screen" />;
   }
 
+  const chatAvatarSrc = avatars?.[chatId] || null;
+
   return (
     <div className="chat h-screen grid grid-rows-[66px_minmax(0,1fr)]">
       <div className="chat__header flex items-center px-4 py-3.5 bg-dark-primary border-b border-b-divider-secondary">
@@ -76,7 +78,7 @@ const Chat = () => {
           <div className="chat-cell__picture flex items-center justify-center">
             <Avatar
               size="small"
-              src={currentChat.avatarSrc}
+              src={chatAvatarSrc}
               name={currentChat.name}
             />
           </div>
