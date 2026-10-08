@@ -10,7 +10,7 @@ export const ACTION_TYPES = {
 
 export const getChatHistory = createAsyncThunk(
   ACTION_TYPES.GET_CHATS_HISTORY,
-  async ({ chatId, count = 10 }: ChatHistoryData, { rejectWithValue }) => {
+  async ({ chatId, count }: ChatHistoryData, { rejectWithValue }) => {
     try {
       const { data } = await journalsApi.getChatHistory({ chatId, count });
 
