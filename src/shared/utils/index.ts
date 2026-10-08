@@ -7,4 +7,5 @@ export { handleIsActionLoading } from "./handleIsActionLoading";
 export { handleOutgoingNotification } from "./handleOutgoingNotification";
 export { mergeMessages } from "./mergeMessages";
 export { processWithRateLimit } from "./processWithRateLimit";
+export { scrollToBottom } from "./scrollToBottom";
 

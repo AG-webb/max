@@ -3,7 +3,8 @@ import {
   SLICE_NAMES,
 } from "@/app/store/store.constants";
 import { addThunkMatchers } from "@/app/store/utils/addThunkMatchers";
-import { createSlice } from "@reduxjs/toolkit";
+import type { StateInstance } from "@/types";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { AuthState } from "../types";
 import { getQrCode, getStateInstance } from "./authThunks";
 
@@ -18,6 +19,9 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     resetAuthState: () => initialState,
+    setAuthenticated: (state, action: PayloadAction<StateInstance>) => {
+      state.authenticated = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -33,6 +37,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { resetAuthState } = authSlice.actions;
+export const { resetAuthState, setAuthenticated } = authSlice.actions;
 
 export default authSlice.reducer;

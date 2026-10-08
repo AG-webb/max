@@ -60,7 +60,7 @@ export type ExtendedTextTypeHistory = {
 export type FileTypeHistory = {
   typeMessage: FileMessageType;
   downloadUrl: string;
-  downloadUrlJpeg: string;
+  downloadUrlJpeg?: string;
   caption: string;
   fileName: string;
   jpegThumbnail: string;

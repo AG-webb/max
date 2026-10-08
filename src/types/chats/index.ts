@@ -1,5 +1,10 @@
 export type MessageViewType = "outgoing" | "incoming";
 export type StatusMessageType = "sent" | "delivered" | "read";
+export type OutgoingStatusMessageType =
+  | Exclude<StatusMessageType, "sent">
+  | "failed"
+  | "noAccount"
+  | "notInGroup";
 export type TextMessageType = "textMessage";
 export type ExtendedTextMessageType = "extendedTextMessage";
 export type FileMessageType =
@@ -8,18 +13,18 @@ export type FileMessageType =
   | "documentMessage"
   | "audioMessage"
   | "stickerMessage";
-export type WebhookType =
+export type StandardWebhookType =
   | "incomingMessageReceived"
   | "outgoingMessageReceived"
-  | "outgoingAPIMessageReceived"
-  | "outgoingMessageStatus";
-// export type WebhookType =
-//   | "incomingMessageReceived"
-//   | "outgoingMessageReceived"
-//   | "outgoingAPIMessageReceived"
-//   | "outgoingMessageStatus"
-//   | "stateInstanceChanged"
-//   | "quotaExceeded";
+  | "outgoingAPIMessageReceived";
+export type StatusWebhookType = "outgoingMessageStatus";
+export type StateWebhookType = "stateInstanceChanged";
+export type QuotaWebhookType = "quotaExceeded";
+export type WebhookType =
+  | StandardWebhookType
+  | StatusWebhookType
+  | StateWebhookType
+  | QuotaWebhookType;
 export type PollMessageType = "pollMessage";
 export type ReactionMessageType = "reactionMessage";
 export type QuotedMessageType = "quotedMessage";
@@ -36,6 +41,8 @@ export type MessageType =
   | QuotedMessageType;
 
 export type ChatType = "user" | "group" | "channel" | "bot";
+
+export type InstanceType = "whatsapp" | "telegram" | "v3";
 
 export interface QuotedMessage {
   stanzaId: string;

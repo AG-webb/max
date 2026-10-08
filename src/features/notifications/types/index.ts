@@ -4,6 +4,7 @@ import type {
   FileTypeHistory,
   PollMessageData,
 } from "@/features/journals/types";
+import type { StateInstance } from "@/types";
 import type {
   ChatType,
   ContactMessageType,
@@ -12,13 +13,18 @@ import type {
   ExtendedTextMessageType,
   FileMessageType,
   ForwardedProps,
+  InstanceType,
   LocationMessageType,
   NotificationQuotedMessage,
+  OutgoingStatusMessageType,
   PollMessageType,
+  QuotaWebhookType,
   QuotedMessageType,
   ReactionMessageType,
+  StandardWebhookType,
+  StateWebhookType,
+  StatusWebhookType,
   TextMessageType,
-  WebhookType,
 } from "@/types/chats";
 
 export type TextMessageData = {
@@ -118,14 +124,8 @@ export type NotificationMessageData =
   | EditedTypeNotification
   | DeletedTypeNotification;
 
-export type Notification = {
-  typeWebhook: WebhookType;
-  instanceData: {
-    idInstance: number;
-    wid: string;
-    typeInstance: string;
-  };
-  timestamp: number;
+export type StandardNotification = {
+  typeWebhook: StandardWebhookType;
   idMessage: string;
   senderData: {
     chatId: string;
@@ -139,3 +139,43 @@ export type Notification = {
   };
   messageData: NotificationMessageData;
 };
+
+export type StatusNotification = {
+  typeWebhook: StatusWebhookType;
+  chatId: string;
+  idMessage: string;
+  status: OutgoingStatusMessageType;
+  description: string;
+};
+
+export type StateNotification = {
+  typeWebhook: StateWebhookType;
+  stateInstance: StateInstance;
+};
+
+export type QuotaNotification = {
+  typeWebhook: QuotaWebhookType;
+  quotaData: {
+    method: string;
+    used: string;
+    total: string;
+    status: string;
+    description: string;
+  };
+};
+
+export type Notification = {
+  instanceData: {
+    idInstance: number;
+    wid: string;
+    typeInstance: InstanceType;
+  };
+  timestamp: number;
+} & (
+  | StandardNotification
+  | StatusNotification
+  | StateNotification
+  | QuotaNotification
+);
+
+export type ChatsNotification = Exclude<Notification, StateNotification>;

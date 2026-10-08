@@ -3,9 +3,11 @@ import Avatar from "@/components/ui/Avatar";
 import PageLoader from "@/components/ui/PageLoader";
 import { useJournals } from "@/features/journals/hooks/useJournals";
 import { notificationReceived } from "@/features/journals/model/journalsSlice";
+import { ACTION_TYPES } from "@/features/journals/model/journalsThunks";
 import type { Notification } from "@/features/notifications/types";
 import { useService } from "@/features/service/hooks/useService";
 import { ROUTES } from "@/shared/constants";
+import { handleIsActionLoading } from "@/shared/utils";
 import { useRef } from "react";
 import { Link, useParams } from "react-router";
 import ChatInput from "./components/ChatInput";
@@ -31,23 +33,26 @@ const notification: Notification = {
     senderPhoneNumber: 79876543210,
   },
   messageData: {
-    typeMessage: "textMessage",
-    textMessageData: {
-      textMessage: "Test message goes here!!!",
-      isForwarded: false,
+    typeMessage: "imageMessage",
+    fileMessageData: {
+      downloadUrl:
+        "https://sw-media-3100.storage.yandexcloud.net/3100000000/15697d2c-397c-4fd0-8e1a-8be95f753aae.webp",
+      caption: "",
+      fileName: "15697d2c-397c-4fd0-8e1a-8be95f753aae.webp",
+      jpegThumbnail:
+        "UklGRjoAAABXRUJQVlA4IC4AAACwAwCdASoyADIAPm0skkYkIqGhLggAgA2JaQAAZAEm0xUUDzF5wAD++yGAAAAA",
+      isAnimated: false,
+      mimeType: "image/webp",
       forwardingScore: 0,
+      isForwarded: false,
     },
-    // quotedMessage: {
-    //   stanzaId: "11",
-    //   participant: "asdsad",
-    // },
   },
 };
 
 const Chat = () => {
   const { chatId } = useParams();
   const { chats, avatars } = useService();
-  const { chatsHistory } = useJournals();
+  const { chatsHistory, actionResult } = useJournals();
   const chatMessagesRef = useRef<HTMLDivElement | null>(null);
 
   const currentChat = chats?.find((chat) => chat.chatId === chatId);
@@ -76,11 +81,7 @@ const Chat = () => {
         </Link>
         <div className="chat__info flex items-center pl-2">
           <div className="chat-cell__picture flex items-center justify-center">
-            <Avatar
-              size="small"
-              src={chatAvatarSrc}
-              name={currentChat.name}
-            />
+            <Avatar size="small" src={chatAvatarSrc} name={currentChat.name} />
           </div>
           <div className="h-full ml-3">
             <div className="relative flex justify-between items-center">
@@ -92,7 +93,12 @@ const Chat = () => {
           </div>
         </div>
         <div className="chat__actions">
-          <div className="ml-12 cursor-pointer bg-dark-secondary p-4" onClick={handleClick}>Notification</div>
+          <div
+            className="ml-12 cursor-pointer bg-dark-secondary p-4"
+            onClick={handleClick}
+          >
+            Notification
+          </div>
         </div>
       </div>
       <div className="chat__body grid grid-rows-1 px-4">
@@ -101,6 +107,12 @@ const Chat = () => {
             className="chat__messages pb-4 overflow-y-scroll scrollbar-none"
             ref={chatMessagesRef}
           >
+            {handleIsActionLoading(
+              actionResult,
+              ACTION_TYPES.GET_CHATS_HISTORY,
+            ) ? (
+              <PageLoader className="min-h-full" />
+            ) : null}
             {currentChatHistory ? (
               <ChatMessages
                 key={chatId}

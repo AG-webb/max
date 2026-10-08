@@ -3,12 +3,13 @@ import {
   SLICE_NAMES,
 } from "@/app/store/store.constants";
 import { addThunkMatchers } from "@/app/store/utils/addThunkMatchers";
-import type { Notification } from "@/features/notifications/types";
-import { createChatHistory } from "@/shared/utils";
+import type {
+  ChatsNotification
+} from "@/features/notifications/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { ChatHistory, JournalsState } from "../types";
 import { addChatHistory } from "../utils/addChatHistory";
-import { markHistoryAsDeletedOrEdited } from "../utils/markHistoryAsDeletedOrEdited";
+import { handleNotificationReceived } from "../utils/handleNotificationReceived";
 import { getChatHistory } from "./journalsThunks";
 
 const initialState: JournalsState = {
@@ -21,40 +22,10 @@ export const journalsSlice = createSlice({
   initialState,
   reducers: {
     resetAuthState: () => initialState,
-    notificationReceived: (state, action: PayloadAction<Notification>) => {
+    notificationReceived: (state, action: PayloadAction<ChatsNotification>) => {
       const notification = action.payload;
-      const { messageData } = notification;
 
-      if (
-        messageData.typeMessage === "deletedMessage" ||
-        messageData.typeMessage === "editedMessage"
-      ) {
-        const isEdited = messageData.typeMessage === "editedMessage";
-        let historyId: string;
-
-        if (isEdited) {
-          const { editedMessageData } = messageData;
-          historyId = editedMessageData.stanzaId;
-        } else {
-          const { deletedMessageData } = messageData;
-          historyId = deletedMessageData.stanzaId;
-        }
-
-        markHistoryAsDeletedOrEdited(
-          state,
-          notification.senderData.chatId,
-          historyId,
-          isEdited,
-        );
-
-        return;
-      }
-
-      addChatHistory(
-        state,
-        notification.senderData.chatId,
-        createChatHistory(notification),
-      );
+      handleNotificationReceived(state, notification);
     },
     addSendedMessageToHistory: (state, action: PayloadAction<ChatHistory>) => {
       const sendedMessage = action.payload;

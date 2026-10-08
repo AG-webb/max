@@ -71,8 +71,16 @@ const ChatMessage = (
           </div>
           {type === "outgoing" ? (
             <div className="chat-message__status">
-              <svg width="16" height="16" viewBox="0 0 24 24">
-                {props.statusMessage === "read" ? (
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                className={
+                  props.statusMessage === "read" ? "text-blue-500" : ""
+                }
+              >
+                {props.statusMessage === "read" ||
+                props.statusMessage === "delivered" ? (
                   <path
                     fill="currentColor"
                     fill-rule="evenodd"

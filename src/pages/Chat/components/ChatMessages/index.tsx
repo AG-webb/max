@@ -1,5 +1,6 @@
 import type { ChatHistory } from "@/features/journals/types";
-import { useLayoutEffect, type RefObject } from "react";
+import { scrollToBottom } from "@/shared/utils";
+import { useEffect, useLayoutEffect, type RefObject } from "react";
 import ChatMessage from "../ChatMessage";
 import EmptyMessages from "../EmptyMessages";
 import { returnHistoryWithReactions } from "./utils/returnHistoryWithReactions";
@@ -12,10 +13,16 @@ const ChatMessages = ({
   chatMessagesRef: RefObject<HTMLDivElement | null>;
 }) => {
   useLayoutEffect(() => {
-    if (chatMessagesRef.current) {
-      chatMessagesRef.current.scrollTo(0, chatMessagesRef.current.scrollHeight);
-    }
+    const chatMessagesElement = chatMessagesRef.current;
+
+    scrollToBottom(chatMessagesElement);
   }, [chatMessagesRef]);
+
+  useEffect(() => {
+    const chatMessagesElement = chatMessagesRef.current;
+
+    scrollToBottom(chatMessagesElement);
+  }, [chatMessagesRef, history.length]);
 
   const historyWithReactions = returnHistoryWithReactions(history);
 
