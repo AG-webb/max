@@ -1,6 +1,10 @@
+import { useAppDispatch } from "@/app/store";
+import { logout } from "@/features/auth/model/authThunks";
 import clsx from "clsx";
 
 const Nav = ({ className }: { className?: string }) => {
+  const dispatch = useAppDispatch();
+
   return (
     <nav
       aria-label="Nav bar"
@@ -30,7 +34,13 @@ const Nav = ({ className }: { className?: string }) => {
           <button className="nav-link" type="button">
             Calls
           </button>
-          <button className="nav-link" type="button">
+          <button
+            className="nav-link cursor-pointer"
+            type="button"
+            onClick={() => {
+              dispatch(logout());
+            }}
+          >
             Settings
           </button>
         </div>

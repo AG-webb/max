@@ -1,11 +1,6 @@
-import {
-  DEFAULT_ACTION_RESULT,
-  SLICE_NAMES,
-} from "@/app/store/store.constants";
+import { DEFAULT_ACTION_RESULT, SLICE_NAMES } from "@/app/store";
 import { addThunkMatchers } from "@/app/store/utils/addThunkMatchers";
-import type {
-  ChatsNotification
-} from "@/features/notifications/types";
+import type { ChatsNotification } from "@/features/notifications/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { ChatHistory, JournalsState } from "../types";
 import { addChatHistory } from "../utils/addChatHistory";

@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "@/app/store/store";
+import { useAppDispatch, useAppSelector } from "@/app/store";
 import { actionResultSelector } from "@/features/auth/model/authSelectors";
 import { getChats } from "@/features/service/model/serviceThunks";
 import type { Chat } from "@/features/service/types";

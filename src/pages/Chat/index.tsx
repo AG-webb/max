@@ -1,4 +1,4 @@
-import { useAppDispatch } from "@/app/store/store";
+import { useAppDispatch } from "@/app/store";
 import Avatar from "@/components/ui/Avatar";
 import PageLoader from "@/components/ui/PageLoader";
 import { useJournals } from "@/features/journals/hooks/useJournals";

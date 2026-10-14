@@ -1,8 +1,6 @@
-import { useAppDispatch, useAppSelector } from "@/app/store/store";
+import { useAppDispatch, useAppSelector } from "@/app/store";
 import { handleIsActionLoading } from "@/shared/utils";
-import {
-  actionResultSelector,
-} from "../model/sendingSelectors";
+import { actionResultSelector } from "../model/sendingSelectors";
 
 export const useSending = () => {
   const actionResult = useAppSelector(actionResultSelector);

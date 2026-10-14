@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "@/app/store/store";
+import { useAppDispatch, useAppSelector } from "@/app/store";
 import { devMaxItems } from "@/shared/constants/variables";
 import { delay, handleIsActionLoading } from "@/shared/utils";
 import { serviceApi } from "../api/service.api";

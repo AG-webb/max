@@ -13,11 +13,35 @@ export interface AuthResponse {
   message: string;
 }
 
+export interface LogoutResponse {
+  isLogout: boolean;
+}
+
 export interface StateInstanceResponse {
   stateInstance: StateInstance;
 }
 
+export interface SendAuthorizationPasswordResponse {
+  status: boolean;
+  data: AuthorizationPasswordSuccessData | AuthorizationPasswordFailData;
+}
+
+export type AuthorizationPasswordSuccessData = {
+  status: "success";
+  reason: "";
+};
+
+export type AuthorizationPasswordFailData = {
+  status: "fail";
+  reason:
+    | "already_registered"
+    | "invalid_password"
+    | "rate_limit_exceeded"
+    | "authorization_not_started"
+    | "timeout";
+};
+
 export interface AuthState extends DefaultStateType {
   qrCode: string | null;
-  authenticated: StateInstance | null;
+  stateInstance: StateInstance | null;
 }

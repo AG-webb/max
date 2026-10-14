@@ -1,6 +1,6 @@
 import { useSending } from "@/features/sending/hooks/useService";
 import { sendMessage } from "@/features/sending/model/sendingThunks";
-import type { ChatType } from "@/types";
+import type { ChatType } from "@/types/chats";
 import { useState } from "react";
 
 const ChatInput = ({
@@ -71,9 +71,9 @@ const ChatInput = ({
               <svg width="24" height="24" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M5.29 11.705a1 1 0 0 1 .005-1.415l6.015-5.97a1 1 0 0 1 1.41.001l5.987 5.972a1 1 0 0 1-1.412 1.416l-4.28-4.27v11.533a1 1 0 1 1-2 0V7.43l-4.31 4.279a1 1 0 0 1-1.414-.005"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </button>

@@ -1,6 +1,7 @@
-import type { RootState } from "@/app/store/store";
+import type { RootState } from "@/app/store";
 
 export const qrCodeSelector = (state: RootState) => state.auth.qrCode;
-export const actionResultSelector = (state: RootState) => state.auth.actionResult;
-export const authenticatedSelector = (state: RootState) =>
-  state.auth.authenticated;
+export const actionResultSelector = (state: RootState) =>
+  state.auth.actionResult;
+export const stateInstanceSelector = (state: RootState) =>
+  state.auth.stateInstance;

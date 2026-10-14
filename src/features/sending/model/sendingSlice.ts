@@ -1,7 +1,4 @@
-import {
-  DEFAULT_ACTION_RESULT,
-  SLICE_NAMES,
-} from "@/app/store/store.constants";
+import { DEFAULT_ACTION_RESULT, SLICE_NAMES } from "@/app/store";
 import { addThunkMatchers } from "@/app/store/utils/addThunkMatchers";
 import type { DefaultStateType } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";

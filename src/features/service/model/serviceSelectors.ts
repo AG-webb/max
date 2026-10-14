@@ -1,6 +1,8 @@
-import type { RootState } from "@/app/store/store";
+import type { RootState } from "@/app/store";
 
 export const chatsSelector = (state: RootState) => state.service.chats;
-export const lastMessagesSelector = (state: RootState) => state.service.lastMessages;
+export const lastMessagesSelector = (state: RootState) =>
+  state.service.lastMessages;
 export const avatarsSelector = (state: RootState) => state.service.avatars;
-export const actionResultSelector = (state: RootState) => state.service.actionResult;
+export const actionResultSelector = (state: RootState) =>
+  state.service.actionResult;
