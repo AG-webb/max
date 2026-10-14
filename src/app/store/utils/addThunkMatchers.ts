@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from "@/shared/constants";
 import type { DefaultStateType } from "@/types";
 import {
   isFulfilled,
@@ -34,18 +35,16 @@ export const addThunkMatchers = <
     })
     .addMatcher(isRejected(thunk), (state, action) => {
       const message =
-        "error" in action &&
-        action.error &&
-        typeof action.error === "object" &&
-        "message" in action.error &&
-        typeof action.error.message === "string"
-          ? action.error.message
-          : "";
+        typeof action.payload === "string"
+          ? action.payload
+          : ERROR_MESSAGES.GENERIC_ERROR;
 
-      state.actionResult = {
-        type: thunk.typePrefix,
-        status: "error",
-        message,
-      };
+      if (message !== ERROR_MESSAGES.CANCELED) {
+        state.actionResult = {
+          type: thunk.typePrefix,
+          status: "error",
+          message,
+        };
+      }
     });
 };

@@ -1,23 +1,34 @@
 import Fallback from "@/components/error/Fallback";
+import InstanceErrorFallback from "@/components/error/InstanceErrorFallback";
 import PageLoader from "@/components/ui/PageLoader";
+import { handleIsActionError } from "@/shared/utils";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useAuth } from "../hooks/useAuth";
 import { resetAuthState } from "../model/authSlice";
-import { getStateInstance } from "../model/authThunks";
+import { ACTION_TYPES, getStateInstance } from "../model/authThunks";
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const { authenticated, actionResult, dispatch } = useAuth();
+  const { stateInstance, actionResult, dispatch } = useAuth();
+
+  const stateInstanceError = handleIsActionError(
+    actionResult,
+    ACTION_TYPES.GET_STATE_INSTANCE,
+  );
 
   useEffect(() => {
-    if (authenticated === null) {
+    if (stateInstance === null) {
       dispatch(getStateInstance());
     }
-  }, [authenticated, dispatch]);
+  }, [stateInstance, dispatch]);
 
-  if (actionResult.status === "idle") {
-    return <PageLoader />;
+  if (stateInstanceError) {
+    return <InstanceErrorFallback errorMessage={actionResult.message} />;
+  }
+
+  if (stateInstance === null || actionResult.status === "idle") {
+    return <PageLoader className="h-screen" />;
   }
 
   return (

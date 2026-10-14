@@ -1,5 +1,5 @@
 import { addSendedMessageToHistory } from "@/features/journals/model/journalsSlice";
-import { getApiError } from "@/services/api/api.errors";
+import { getApiErrorMessage } from "@/services/api/api.errors";
 import type { ChatType } from "@/types/chats";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { sendingApi } from "../api/sending.api";
@@ -45,9 +45,9 @@ export const sendMessage = createAsyncThunk(
 
       return data;
     } catch (error) {
-      const apiError = getApiError(error);
+      const errorMessage = getApiErrorMessage(error);
 
-      return rejectWithValue(apiError.message);
+      return rejectWithValue(errorMessage);
     }
   },
 );

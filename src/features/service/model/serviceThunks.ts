@@ -1,4 +1,4 @@
-import { getApiError } from "@/services/api/api.errors";
+import { getApiErrorMessage } from "@/services/api/api.errors";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { serviceApi } from "../api/service.api";
 
@@ -14,9 +14,9 @@ export const getChats = createAsyncThunk(
 
       return data;
     } catch (error) {
-      const apiError = getApiError(error);
+      const errorMessage = getApiErrorMessage(error);
 
-      return rejectWithValue(apiError.message);
+      return rejectWithValue(errorMessage);
     }
   },
 );
