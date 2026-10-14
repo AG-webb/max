@@ -1,3 +1,4 @@
+import CustomButton from "@/components/ui/CustomButton";
 import { getErrorMessage, type FallbackProps } from "react-error-boundary";
 
 const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
@@ -8,13 +9,13 @@ const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
     >
       <p className="text-3xl">Something went wrong:</p>
       <pre>{getErrorMessage(error)}</pre>
-      <button
-        type="button"
+      <CustomButton
         onClick={resetErrorBoundary}
+        size="medium"
         className="cursor-pointer bg-button-primary px-3 py-1.5 text-sm rounded-lg"
       >
         Try again
-      </button>
+      </CustomButton>
     </div>
   );
 };

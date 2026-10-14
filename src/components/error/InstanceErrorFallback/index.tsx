@@ -1,4 +1,5 @@
 import { useAppDispatch } from "@/app/store";
+import CustomButton from "@/components/ui/CustomButton";
 import { getStateInstance } from "@/features/auth/model/authThunks";
 
 const InstanceErrorFallback = ({ errorMessage }: { errorMessage: string }) => {
@@ -11,13 +12,13 @@ const InstanceErrorFallback = ({ errorMessage }: { errorMessage: string }) => {
     >
       <p className="text-3xl">Something went wrong:</p>
       <pre>{errorMessage}</pre>
-      <button
-        type="button"
+      <CustomButton
         onClick={() => dispatch(getStateInstance())}
+        size="medium"
         className="cursor-pointer bg-button-primary px-3 py-1.5 text-sm rounded-lg"
       >
         Try again
-      </button>
+      </CustomButton>
     </div>
   );
 };
