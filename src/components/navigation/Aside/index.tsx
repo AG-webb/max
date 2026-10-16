@@ -1,5 +1,6 @@
 import ChatCell from "@/components/ui/ChatCell";
 import ChatsSkeleton from "@/components/ui/ChatsSkeleton";
+import Icon from "@/components/ui/Icon";
 import { useJournals } from "@/features/journals/hooks/useJournals";
 import { getChatHistory } from "@/features/journals/model/journalsThunks";
 import { useService } from "@/features/service/hooks/useService";
@@ -52,7 +53,9 @@ const Aside = ({ className }: { className?: string }) => {
       <div className="aside__header px-4">
         <div className="flex justify-between pt-4 pb-3">
           <div>Chats</div>
-          <div>Plus</div>
+          <div>
+            <Icon type="plus" />
+          </div>
         </div>
         <div className="pb-2">Search</div>
       </div>

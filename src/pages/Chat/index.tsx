@@ -1,5 +1,6 @@
 import { useAppDispatch } from "@/app/store";
 import Avatar from "@/components/ui/Avatar";
+import Icon from "@/components/ui/Icon";
 import PageLoader from "@/components/ui/PageLoader";
 import { useJournals } from "@/features/journals/hooks/useJournals";
 import { notificationReceived } from "@/features/journals/model/journalsSlice";
@@ -77,7 +78,7 @@ const Chat = () => {
           to={ROUTES.ROOT}
           className="chat__back flex items-center justify-center w-10 h-10"
         >
-          &lt;
+          <Icon type="arrow-left" />
         </Link>
         <div className="chat__info flex items-center pl-2">
           <div className="chat-cell__picture flex items-center justify-center">

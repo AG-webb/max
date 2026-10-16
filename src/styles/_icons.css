@@ -1,12 +1,12 @@
 @font-face {
   font-family: "icomoon";
-  src: url("@/assets/fonts/icons/icomoon.eot?8vdrqo");
+  src: url("../assets/fonts/icons/icomoon.eot?8vdrqo");
   src:
-    url("@/assets/fonts/icons/icomoon.eot?8vdrqo#iefix")
+    url("../assets/fonts/icons/icomoon.eot?8vdrqo#iefix")
       format("embedded-opentype"),
-    url("@/assets/fonts/icons/icomoon.ttf?8vdrqo") format("truetype"),
-    url("@/assets/fonts/icons/icomoon.woff?8vdrqo") format("woff"),
-    url("@/assets/fonts/icons/icomoon.svg?8vdrqo#icomoon") format("svg");
+    url("../assets/fonts/icons/icomoon.ttf?8vdrqo") format("truetype"),
+    url("../assets/fonts/icons/icomoon.woff?8vdrqo") format("woff"),
+    url("../assets/fonts/icons/icomoon.svg?8vdrqo#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -29,84 +29,108 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-axios:before {
-  content: "\e91a";
-}
-.icon-ant:before {
+.icon-arrow-up:before {
   content: "\e900";
 }
-.icon-arrow-right:before {
+.icon-arrow-left:before {
   content: "\e901";
 }
-.icon-code:before {
+.icon-attachment:before {
   content: "\e902";
 }
-.icon-css:before {
+.icon-call-fill:before {
   content: "\e903";
 }
-.icon-download:before {
+.icon-call-incoming:before {
   content: "\e904";
 }
-.icon-external-link:before {
+.icon-call-missed:before {
   content: "\e905";
 }
-.icon-git:before {
+.icon-call:before {
   content: "\e906";
 }
-.icon-github:before {
+.icon-camera-fill:before {
   content: "\e907";
 }
-.icon-gitlab:before {
+.icon-chevron-right:before {
   content: "\e908";
 }
-.icon-gsap:before {
+.icon-delivered:before {
   content: "\e909";
 }
-.icon-gulp:before {
+.icon-devices:before {
   content: "\e90a";
 }
-.icon-html5:before {
+.icon-dots-x:before {
   content: "\e90b";
 }
-.icon-javascript:before {
+.icon-dots-y:before {
   content: "\e90c";
 }
-.icon-jira:before {
+.icon-folder:before {
   content: "\e90d";
 }
-.icon-jquery:before {
+.icon-globe:before {
   content: "\e90e";
 }
-.icon-linkedin:before {
+.icon-link:before {
   content: "\e90f";
 }
-.icon-mail:before {
+.icon-message-fill:before {
   content: "\e910";
 }
-.icon-map-pin:before {
+.icon-message:before {
   content: "\e911";
 }
-.icon-phone:before {
+.icon-microphone:before {
   content: "\e912";
 }
-.icon-react:before {
+.icon-notification-crossed:before {
   content: "\e913";
 }
-.icon-redux-toolkit:before {
+.icon-notification:before {
   content: "\e914";
 }
-.icon-scss:before {
+.icon-play:before {
   content: "\e915";
 }
-.icon-swiper:before {
+.icon-plus:before {
   content: "\e916";
 }
-.icon-tailwind-css:before {
+.icon-poll:before {
   content: "\e917";
 }
-.icon-typescript:before {
+.icon-privacy:before {
   content: "\e918";
 }
-.icon-webpack:before {
+.icon-question:before {
   content: "\e919";
+}
+.icon-read:before {
+  content: "\e91a";
+}
+.icon-reply:before {
+  content: "\e91b";
+}
+.icon-search:before {
+  content: "\e91c";
+}
+.icon-settings:before {
+  content: "\e91d";
+}
+.icon-sticker:before {
+  content: "\e91e";
+}
+.icon-users:before {
+  content: "\e91f";
+}
+.icon-video-call-incoming:before {
+  content: "\e920";
+}
+.icon-video-call-missed:before {
+  content: "\e921";
+}
+.icon-video-call:before {
+  content: "\e922";
 }
