@@ -1,13 +1,22 @@
 import type { ChatCellProps } from "@/features/service/types";
 import { ROUTES } from "@/shared/constants";
 import { convertTimestampToDate } from "@/shared/utils";
+import type { MouseEventHandler } from "react";
 import { Link } from "react-router";
 import Avatar from "../Avatar";
+import CustomButton from "../CustomButton";
+import Icon from "../Icon";
 import Skeleton from "../Skeleton";
 import { getLastMessageText } from "./getLastMessageText";
 import "./style.css";
 
 const ChatCell = ({ chatId, name, lastMessage, avatarSrc }: ChatCellProps) => {
+  const handleChatOptionsClick: MouseEventHandler<HTMLButtonElement> = (
+    event,
+  ) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
   return (
     <div className="chat-cell cursor-pointer text-left w-full px-4 py-2.25 transition-colors hover:bg-card-hover">
       <Link
@@ -27,12 +36,12 @@ const ChatCell = ({ chatId, name, lastMessage, avatarSrc }: ChatCellProps) => {
                 <Skeleton className="w-10 h-4" />
               )}
             </div>
-            <button
-              type="button"
+            <CustomButton
               className="chat-cell__options cursor-pointer absolute top-0 right-0 leading-4 transition-opacity"
+              onClick={handleChatOptionsClick}
             >
-              ...
-            </button>
+              <Icon type="dots-x" />
+            </CustomButton>
           </div>
           <div className="line-clamp-2">
             {lastMessage ? (

@@ -9,7 +9,7 @@ const Chats = () => {
   return (
     <div
       className={clsx(
-        "chats grid h-screen max-h-screen grid-rows-[minmax(0,1fr)_76px]",
+        "chats grid h-screen max-h-screen grid-rows-[minmax(0,1fr)_var(--nav-height)]",
         "lg:grid-rows-1 lg:grid-cols-[var(--nav-width)_var(--aside-width)_1fr]",
       )}
     >

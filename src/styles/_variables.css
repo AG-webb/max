@@ -1,7 +1,8 @@
 :root {
   --font-primary: "Roboto";
 
-  --nav-width: 76px;
+  --nav-width: 77px;
+  --nav-height: 76px;
   --aside-width: 394px;
 
   --desk-xl: 1659px;

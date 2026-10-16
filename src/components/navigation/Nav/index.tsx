@@ -16,15 +16,15 @@ const Nav = ({ className }: { className?: string }) => {
         <div
           className={clsx(
             "nav__links shrink nav__links_folders grid content-start gap-2",
-            "lg:scrollbar-none lg:overflow-y-scroll lg:min-h-19 lg:py-4",
+            "lg:scrollbar-none lg:overflow-y-scroll lg:min-h-19 lg:pt-6 lg:pb-5",
           )}
         >
           <NavLink isActive icon="message-fill" text="All" />
           <NavLink icon="folder" text="New" />
           <NavLink icon="folder" text="Channels" />
         </div>
-        <div className="nav__separator w-full shrink-0 h-px bg-divider-primary"></div>
-        <div className="nav__links grow shrink-0 flex flex-col content-start gap-2 lg:py-4">
+        <div className="nav__separator mx-1 shrink-0 h-px bg-divider-primary"></div>
+        <div className="nav__links grow shrink-0 flex flex-col content-start gap-2 lg:pt-3 lg:pb-4">
           <NavLink icon="users" text="Contacts" />
           <NavLink icon="call-fill" text="Calls" />
           <NavLink className="mt-auto" icon="settings" text="Settings" />

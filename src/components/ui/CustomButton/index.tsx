@@ -11,7 +11,7 @@ const CustomButton = ({
   children,
   ...props
 }: CustomButtonProps & ButtonProps) => {
-  const baseClasses = "btn";
+  const baseClasses = "btn cursor-pointer";
   const buttonSizes: Record<ButtonSizes, string> = {
     small: "btn_sm h-6",
     medium: "btn_md h-8",

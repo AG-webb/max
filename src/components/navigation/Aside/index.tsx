@@ -1,5 +1,6 @@
 import ChatCell from "@/components/ui/ChatCell";
 import ChatsSkeleton from "@/components/ui/ChatsSkeleton";
+import CustomButton from "@/components/ui/CustomButton";
 import Icon from "@/components/ui/Icon";
 import { useJournals } from "@/features/journals/hooks/useJournals";
 import { getChatHistory } from "@/features/journals/model/journalsThunks";
@@ -12,6 +13,7 @@ import { ACTION_TYPES } from "@/features/service/model/serviceThunks";
 import clsx from "clsx";
 import { useEffect } from "react";
 import { useParams } from "react-router";
+import Search from "../Search";
 
 const Aside = ({ className }: { className?: string }) => {
   const { chatId } = useParams();
@@ -51,13 +53,20 @@ const Aside = ({ className }: { className?: string }) => {
       )}
     >
       <div className="aside__header px-4">
-        <div className="flex justify-between pt-4 pb-3">
-          <div>Chats</div>
+        <div className="flex justify-between items-center pt-4 pb-3">
+          <div className="text-[24px] font-semibold">Chats</div>
           <div>
-            <Icon type="plus" />
+            <CustomButton
+              size="medium"
+              className="bg-button-primary w-8 rounded-[15px] flex items-center justify-center"
+            >
+              <Icon type="plus" className="text-[20px]" />
+            </CustomButton>
           </div>
         </div>
-        <div className="pb-2">Search</div>
+        <div className="pb-2">
+          <Search />
+        </div>
       </div>
       <div className="aside__chats overflow-x-scroll">
         {handleIsLoading(ACTION_TYPES.GET_CHATS) ? (
