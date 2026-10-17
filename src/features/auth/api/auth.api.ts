@@ -1,13 +1,13 @@
 import api from "@/services/api/axios";
 import type {
-  AuthResponse,
+  getQrCodeResponse,
   LogoutResponse,
   SendAuthorizationPasswordResponse,
-  StateInstanceResponse,
+  StateInstanceResponse
 } from "../types";
 
 export const authApi = {
-  getQrCode: () => api.get<AuthResponse>("qr"),
+  getQrCode: () => api.get<getQrCodeResponse>("qr"),
   logout: () => api.get<LogoutResponse>("logout"),
   getStateInstance: () => api.get<StateInstanceResponse>("state-instance"),
   sendAuthorizationPassword: (password: string) =>

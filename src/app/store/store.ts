@@ -1,4 +1,4 @@
-import authReducer from "@/features/auth/model/authSlice";
+import { authReducer } from "@/features/auth";
 import journalsReducer from "@/features/journals/model/journalsSlice";
 import sendingReducer from "@/features/sending/model/sendingSlice";
 import serviceReducer from "@/features/service/model/serviceSlice";

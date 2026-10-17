@@ -3,7 +3,7 @@ import Chats from "@/pages/Chats";
 import { ROUTES } from "@/shared/constants";
 import { Route, Routes } from "react-router";
 import Providers from "./providers";
-import { ProtectedRoute } from "./router/ProtectedRoute";
+import { ProtectedRoute } from "./router";
 
 function App() {
   return (

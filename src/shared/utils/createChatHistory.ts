@@ -1,9 +1,11 @@
 import type { ChatHistory, ChatHistoryBase } from "@/features/journals/types";
-import type { Notification } from "@/features/notifications/types";
+import type { StandardNotification } from "@/features/notifications/types";
 import { handleIncomingNotification } from "./handleIncomingNotification";
 import { handleOutgoingNotification } from "./handleOutgoingNotification";
 
-export const createChatHistory = (notification: Notification): ChatHistory => {
+export const createChatHistory = (
+  notification: StandardNotification,
+): ChatHistory => {
   const { typeWebhook } = notification;
   // {
   //   type: "incoming";

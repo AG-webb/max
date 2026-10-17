@@ -1,4 +1,4 @@
-import { useAuth } from "@/features/auth/hooks/useAuth";
+import { useAuth } from "@/features/auth";
 import Auth from "@/pages/Auth";
 import { Outlet } from "react-router";
 

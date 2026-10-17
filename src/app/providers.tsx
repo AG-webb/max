@@ -1,5 +1,5 @@
-import AuthProvider from "@/features/auth/providers/AuthProvider";
-import NotificationProvider from "@/features/notifications/providers/NotificationProvider";
+import { AuthProvider } from "@/features/auth";
+import { NotificationProvider } from "@/features/notifications";
 import type { ReactNode } from "react";
 import { StrictMode } from "react";
 import { Provider } from "react-redux";

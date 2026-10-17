@@ -124,7 +124,16 @@ export type NotificationMessageData =
   | EditedTypeNotification
   | DeletedTypeNotification;
 
-export type StandardNotification = {
+type NotificationBase = {
+  instanceData: {
+    idInstance: number;
+    wid: string;
+    typeInstance: InstanceType;
+  };
+  timestamp: number;
+};
+
+export type StandardNotification = NotificationBase & {
   typeWebhook: StandardWebhookType;
   idMessage: string;
   senderData: {
@@ -140,7 +149,7 @@ export type StandardNotification = {
   messageData: NotificationMessageData;
 };
 
-export type StatusNotification = {
+export type StatusNotification = NotificationBase & {
   typeWebhook: StatusWebhookType;
   chatId: string;
   idMessage: string;
@@ -148,12 +157,12 @@ export type StatusNotification = {
   description: string;
 };
 
-export type StateNotification = {
+export type StateNotification = NotificationBase & {
   typeWebhook: StateWebhookType;
   stateInstance: StateInstance;
 };
 
-export type QuotaNotification = {
+export type QuotaNotification = NotificationBase & {
   typeWebhook: QuotaWebhookType;
   quotaData: {
     method: string;
@@ -164,18 +173,10 @@ export type QuotaNotification = {
   };
 };
 
-export type Notification = {
-  instanceData: {
-    idInstance: number;
-    wid: string;
-    typeInstance: InstanceType;
-  };
-  timestamp: number;
-} & (
+export type Notification =
   | StandardNotification
   | StatusNotification
   | StateNotification
-  | QuotaNotification
-);
+  | QuotaNotification;
 
 export type ChatsNotification = Exclude<Notification, StateNotification>;

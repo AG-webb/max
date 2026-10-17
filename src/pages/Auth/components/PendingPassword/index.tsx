@@ -1,9 +1,9 @@
 import CustomButton from "@/components/ui/CustomButton";
-import { useAuth } from "@/features/auth/hooks/useAuth";
 import {
   ACTION_TYPES,
   sendAuthorizationPassword,
-} from "@/features/auth/model/authThunks";
+  useAuth,
+} from "@/features/auth";
 import { handleIsActionLoading } from "@/shared/utils";
 import { useState } from "react";
 

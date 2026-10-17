@@ -4,7 +4,7 @@ import { notificationReceived } from "@/features/journals/model/journalsSlice";
 import { useEffect, type ReactNode } from "react";
 import { subscribeToNotifications } from "../api/notifications.api";
 
-const NotificationProvider = ({ children }: { children: ReactNode }) => {
+export const NotificationProvider = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -24,5 +24,3 @@ const NotificationProvider = ({ children }: { children: ReactNode }) => {
 
   return children;
 };
-
-export default NotificationProvider;

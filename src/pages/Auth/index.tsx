@@ -1,5 +1,5 @@
 import Icon from "@/components/ui/Icon";
-import { useAuth } from "@/features/auth/hooks/useAuth";
+import { useAuth } from "@/features/auth";
 import clsx from "clsx";
 import Blocked from "./components/Blocked";
 import NotAuthorized from "./components/NotAuthorized";

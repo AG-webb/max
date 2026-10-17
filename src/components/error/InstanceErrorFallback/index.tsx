@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@/app/store";
 import CustomButton from "@/components/ui/CustomButton";
-import { getStateInstance } from "@/features/auth/model/authThunks";
+import { getStateInstance } from "@/features/auth";
 
 const InstanceErrorFallback = ({ errorMessage }: { errorMessage: string }) => {
   const dispatch = useAppDispatch();

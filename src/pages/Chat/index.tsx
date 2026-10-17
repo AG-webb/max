@@ -5,7 +5,7 @@ import PageLoader from "@/components/ui/PageLoader";
 import { useJournals } from "@/features/journals/hooks/useJournals";
 import { notificationReceived } from "@/features/journals/model/journalsSlice";
 import { ACTION_TYPES } from "@/features/journals/model/journalsThunks";
-import type { Notification } from "@/features/notifications/types";
+import type { Notification } from "@/features/notifications";
 import { useService } from "@/features/service/hooks/useService";
 import { ROUTES } from "@/shared/constants";
 import { handleIsActionLoading } from "@/shared/utils";

@@ -1,17 +1,17 @@
 import type { DefaultStateType, StateInstance } from "@/types";
 
-export type authQrType = "qrCode";
-export type AuthErrorType = "error" | "already_registered";
-export type AuthType = authQrType | AuthErrorType;
-export type AuthErrorMessageType =
+type QrSuccessType = "qrCode";
+type QrErrorType = "error" | "already_registered";
+type getQrCodeType = QrSuccessType | QrErrorType;
+export interface getQrCodeResponse {
+  type: getQrCodeType;
+  message: string;
+}
+
+export type getQrCodeErrorResponse =
   | "timeout"
   | "not_ready"
   | "connection_closed";
-
-export interface AuthResponse {
-  type: AuthType;
-  message: string;
-}
 
 export interface LogoutResponse {
   isLogout: boolean;

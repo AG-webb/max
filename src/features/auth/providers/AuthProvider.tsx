@@ -9,7 +9,7 @@ import { useAuth } from "../hooks/useAuth";
 import { resetAuthState } from "../model/authSlice";
 import { ACTION_TYPES, getStateInstance } from "../model/authThunks";
 
-const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { stateInstance, actionResult, dispatch } = useAuth();
 
   const stateInstanceError = handleIsActionError(
@@ -42,5 +42,3 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     </ErrorBoundary>
   );
 };
-
-export default AuthProvider;

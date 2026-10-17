@@ -17,6 +17,7 @@ const ChatCell = ({ chatId, name, lastMessage, avatarSrc }: ChatCellProps) => {
     event.preventDefault();
     event.stopPropagation();
   };
+
   return (
     <div className="chat-cell cursor-pointer text-left w-full px-4 py-2.25 transition-colors hover:bg-card-hover">
       <Link
@@ -37,7 +38,7 @@ const ChatCell = ({ chatId, name, lastMessage, avatarSrc }: ChatCellProps) => {
               )}
             </div>
             <CustomButton
-              className="chat-cell__options cursor-pointer absolute top-0 right-0 leading-4 transition-opacity"
+              className="chat-cell__options cursor-pointer absolute top-0 right-0 transition-opacity"
               onClick={handleChatOptionsClick}
             >
               <Icon type="dots-x" />

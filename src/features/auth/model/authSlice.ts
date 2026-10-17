@@ -16,7 +16,7 @@ const initialState: AuthState = {
   actionResult: DEFAULT_ACTION_RESULT,
 };
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: SLICE_NAMES.AUTH,
   initialState,
   reducers: {

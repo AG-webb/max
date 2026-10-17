@@ -1,7 +1,6 @@
 import CustomButton from "@/components/ui/CustomButton";
 import Skeleton from "@/components/ui/Skeleton";
-import { useAuth } from "@/features/auth/hooks/useAuth";
-import { ACTION_TYPES, getQrCode } from "@/features/auth/model/authThunks";
+import { ACTION_TYPES, getQrCode, useAuth } from "@/features/auth";
 import { handleIsActionError, handleIsActionLoading } from "@/shared/utils";
 import { useEffect } from "react";
 

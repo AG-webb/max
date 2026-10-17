@@ -3,10 +3,10 @@ import type {
   ChatHistoryBase,
   IncomingHistory,
 } from "@/features/journals/types";
-import type { Notification } from "@/features/notifications/types";
+import type { StandardNotification } from "@/features/notifications/types";
 
 export const handleIncomingNotification = (
-  notification: Notification,
+  notification: StandardNotification,
   base: ChatHistoryBase,
 ): ChatHistory => {
   const { messageData, senderData } = notification;
