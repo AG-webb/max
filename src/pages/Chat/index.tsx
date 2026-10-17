@@ -1,11 +1,10 @@
 import { useAppDispatch } from "@/app/store";
-import Avatar from "@/components/ui/Avatar";
-import Icon from "@/components/ui/Icon";
-import PageLoader from "@/components/ui/PageLoader";
+import { PageLoader } from "@/components/loading";
+import { Avatar, Icon } from "@/components/ui";
 import { useJournals } from "@/features/journals/hooks/useJournals";
 import { notificationReceived } from "@/features/journals/model/journalsSlice";
 import { ACTION_TYPES } from "@/features/journals/model/journalsThunks";
-import type { Notification } from "@/features/notifications";
+import type { ChatsNotification } from "@/features/notifications";
 import { useService } from "@/features/service/hooks/useService";
 import { ROUTES } from "@/shared/constants";
 import { handleIsActionLoading } from "@/shared/utils";
@@ -14,7 +13,7 @@ import { Link, useParams } from "react-router";
 import ChatInput from "./components/ChatInput";
 import ChatMessages from "./components/ChatMessages";
 
-const notification: Notification = {
+const notification: ChatsNotification = {
   typeWebhook: "incomingMessageReceived",
   instanceData: {
     idInstance: 3100000000,

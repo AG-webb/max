@@ -1,4 +1,4 @@
-import PageLoader from "@/components/ui/PageLoader";
+import { PageLoader } from "@/components/loading";
 
 const Starting = () => {
   return (

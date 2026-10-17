@@ -1,7 +1,7 @@
-import CustomButton from "@/components/ui/CustomButton";
+import { CustomButton } from "@/components/ui";
 import { getErrorMessage, type FallbackProps } from "react-error-boundary";
 
-const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+export const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   return (
     <div
       role="alert"
@@ -19,5 +19,3 @@ const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
     </div>
   );
 };
-
-export default Fallback;

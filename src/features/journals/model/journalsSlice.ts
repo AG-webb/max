@@ -1,10 +1,9 @@
 import { DEFAULT_ACTION_RESULT, SLICE_NAMES } from "@/app/store";
 import { addThunkMatchers } from "@/app/store/utils/addThunkMatchers";
-import type { ChatsNotification } from "@/features/notifications/types";
+import type { ChatsNotification } from "@/features/notifications";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { ChatHistory, JournalsState } from "../types";
-import { addChatHistory } from "../utils/addChatHistory";
-import { handleNotificationReceived } from "../utils/handleNotificationReceived";
+import { addChatHistory, handleNotificationReceived } from "../utils";
 import { getChatHistory } from "./journalsThunks";
 
 const initialState: JournalsState = {

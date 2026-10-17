@@ -1,4 +1,4 @@
-import Icon from "@/components/ui/Icon";
+import { Icon } from "@/components/ui";
 import { useAuth } from "@/features/auth";
 import clsx from "clsx";
 import Blocked from "./components/Blocked";

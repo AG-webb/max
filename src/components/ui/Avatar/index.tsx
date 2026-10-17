@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import type { AvatarProps } from "./types";
 
-const Avatar = ({ size = "medium", src, name, className }: AvatarProps) => {
+export const Avatar = ({ size = "medium", src, name, className }: AvatarProps) => {
   const sizeClasses = {
     "extra-small": "w-6 h-6",
     small: "w-10 h-10",
@@ -24,5 +24,3 @@ const Avatar = ({ size = "medium", src, name, className }: AvatarProps) => {
     </div>
   );
 };
-
-export default Avatar;

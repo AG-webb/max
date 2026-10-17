@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Search = () => {
+export const Search = () => {
   const [inputValue, setInputValue] = useState("");
 
   const handleSearch = () => {
@@ -28,5 +28,3 @@ const Search = () => {
     </form>
   );
 };
-
-export default Search;

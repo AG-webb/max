@@ -3,7 +3,7 @@ import type {
   ChatHistoryBase,
   IncomingHistory,
 } from "@/features/journals/types";
-import type { StandardNotification } from "@/features/notifications/types";
+import type { StandardNotification } from "@/features/notifications";
 
 export const handleIncomingNotification = (
   notification: StandardNotification,

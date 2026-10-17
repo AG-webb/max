@@ -1,4 +1,4 @@
-import type { ChatsNotification } from "@/features/notifications/types";
+import type { ChatsNotification } from "@/features/notifications";
 import { createChatHistory } from "@/shared/utils/createChatHistory";
 import type { JournalsState } from "../types";
 import { addChatHistory } from "./addChatHistory";

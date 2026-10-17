@@ -1,9 +1,8 @@
-import Aside from "@/components/navigation/Aside";
-import Nav from "@/components/navigation/Nav";
+import { Aside, Nav } from "@/components/navigation";
 import clsx from "clsx";
 import { Outlet, useParams } from "react-router";
 
-const Chats = () => {
+const Main = () => {
   const { chatId } = useParams();
 
   return (
@@ -22,4 +21,4 @@ const Chats = () => {
   );
 };
 
-export default Chats;
+export default Main;

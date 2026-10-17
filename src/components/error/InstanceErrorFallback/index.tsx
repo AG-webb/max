@@ -1,8 +1,8 @@
 import { useAppDispatch } from "@/app/store";
-import CustomButton from "@/components/ui/CustomButton";
+import { CustomButton } from "@/components/ui";
 import { getStateInstance } from "@/features/auth";
 
-const InstanceErrorFallback = ({ errorMessage }: { errorMessage: string }) => {
+export const InstanceErrorFallback = ({ errorMessage }: { errorMessage: string }) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -22,5 +22,3 @@ const InstanceErrorFallback = ({ errorMessage }: { errorMessage: string }) => {
     </div>
   );
 };
-
-export default InstanceErrorFallback;

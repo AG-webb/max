@@ -1,5 +1,5 @@
 import Chat from "@/pages/Chat";
-import Chats from "@/pages/Chats";
+import Main from "@/pages/Main";
 import { ROUTES } from "@/shared/constants";
 import { Route, Routes } from "react-router";
 import Providers from "./providers";
@@ -10,7 +10,7 @@ function App() {
     <Providers>
       <Routes>
         <Route element={<ProtectedRoute />}>
-          <Route path={ROUTES.ROOT} element={<Chats />}>
+          <Route path={ROUTES.ROOT} element={<Main />}>
             <Route path={ROUTES.CHAT()} element={<Chat />} />
           </Route>
         </Route>

@@ -1,4 +1,4 @@
-import CustomButton from "@/components/ui/CustomButton";
+import { CustomButton } from "@/components/ui";
 import {
   ACTION_TYPES,
   sendAuthorizationPassword,

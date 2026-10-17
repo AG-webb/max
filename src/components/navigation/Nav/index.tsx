@@ -2,7 +2,7 @@ import clsx from "clsx";
 import NavLink from "./NavLink";
 import "./style.css";
 
-const Nav = ({ className }: { className?: string }) => {
+export const Nav = ({ className }: { className?: string }) => {
   return (
     <nav
       aria-label="Nav bar"
@@ -33,5 +33,3 @@ const Nav = ({ className }: { className?: string }) => {
     </nav>
   );
 };
-
-export default Nav;

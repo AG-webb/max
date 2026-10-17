@@ -1,4 +1,4 @@
-import Icon from "@/components/ui/Icon";
+import { Icon } from "@/components/ui";
 import { useSending } from "@/features/sending/hooks/useService";
 import { sendMessage } from "@/features/sending/model/sendingThunks";
 import type { ChatType } from "@/types/chats";

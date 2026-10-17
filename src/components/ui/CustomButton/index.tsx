@@ -4,7 +4,7 @@ import clsx from "clsx";
 import "./style.css";
 import type { ButtonSizes, CustomButtonProps } from "./types";
 
-const CustomButton = ({
+export const CustomButton = ({
   size = "large",
   loading,
   className,
@@ -39,5 +39,3 @@ const CustomButton = ({
     </Button>
   );
 };
-
-export default CustomButton;

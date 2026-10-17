@@ -1,6 +1,5 @@
-import Fallback from "@/components/error/Fallback";
-import InstanceErrorFallback from "@/components/error/InstanceErrorFallback";
-import PageLoader from "@/components/ui/PageLoader";
+import { Fallback, InstanceErrorFallback } from "@/components/error";
+import { PageLoader } from "@/components/loading";
 import { handleIsActionError } from "@/shared/utils";
 import type { ReactNode } from "react";
 import { useEffect } from "react";

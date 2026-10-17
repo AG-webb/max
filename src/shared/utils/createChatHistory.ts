@@ -1,5 +1,5 @@
 import type { ChatHistory, ChatHistoryBase } from "@/features/journals/types";
-import type { StandardNotification } from "@/features/notifications/types";
+import type { StandardNotification } from "@/features/notifications";
 import { handleIncomingNotification } from "./handleIncomingNotification";
 import { handleOutgoingNotification } from "./handleOutgoingNotification";
 

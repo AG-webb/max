@@ -1,16 +1,18 @@
+import { Skeleton } from "@/components/loading";
 import type { ChatCellProps } from "@/features/service/types";
 import { ROUTES } from "@/shared/constants";
-import { convertTimestampToDate } from "@/shared/utils";
+import { convertTimestampToDate, getLastMessageText } from "@/shared/utils";
 import type { MouseEventHandler } from "react";
 import { Link } from "react-router";
-import Avatar from "../Avatar";
-import CustomButton from "../CustomButton";
-import Icon from "../Icon";
-import Skeleton from "../Skeleton";
-import { getLastMessageText } from "./getLastMessageText";
+import { Avatar, CustomButton, Icon } from "../ui";
 import "./style.css";
 
-const ChatCell = ({ chatId, name, lastMessage, avatarSrc }: ChatCellProps) => {
+export const ChatCell = ({
+  chatId,
+  name,
+  lastMessage,
+  avatarSrc,
+}: ChatCellProps) => {
   const handleChatOptionsClick: MouseEventHandler<HTMLButtonElement> = (
     event,
   ) => {
@@ -59,5 +61,3 @@ const ChatCell = ({ chatId, name, lastMessage, avatarSrc }: ChatCellProps) => {
     </div>
   );
 };
-
-export default ChatCell;

@@ -1,6 +1,6 @@
-import Skeleton from "../Skeleton";
+import { Skeleton } from "@/components/loading";
 
-const ChatsSkeleton = () => {
+export const ChatsSkeleton = () => {
   return (
     <>
       {Array.from({ length: 10 }).map((_, index) => (
@@ -17,7 +17,7 @@ const ChatsSkeleton = () => {
                 <Skeleton className="w-[60%] h-5" />
                 <Skeleton className="w-10 h-4" />
               </div>
-              <div className='grid gap-0.5'>
+              <div className="grid gap-0.5">
                 <Skeleton className="w-full h-3" />
                 <Skeleton className="w-full h-3" />
               </div>
@@ -28,5 +28,3 @@ const ChatsSkeleton = () => {
     </>
   );
 };
-
-export default ChatsSkeleton;
