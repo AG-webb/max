@@ -4,7 +4,7 @@ import { ACTION_TYPES, getQrCode, useAuth } from "@/features/auth";
 import { handleIsActionError, handleIsActionLoading } from "@/shared/utils";
 import { useEffect } from "react";
 
-const NotAuthorized = () => {
+export const NotAuthorized = () => {
   const { dispatch, qrCode, actionResult } = useAuth();
 
   const qrLoading = handleIsActionLoading(
@@ -53,5 +53,3 @@ const NotAuthorized = () => {
     </div>
   );
 };
-
-export default NotAuthorized;

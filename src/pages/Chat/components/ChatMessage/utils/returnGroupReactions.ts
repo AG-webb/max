@@ -1,4 +1,4 @@
-import type { Reaction } from "@/features/journals/types";
+import type { Reaction } from "@/features/journals";
 
 export const returnGroupReactions = (reactions: Reaction[]) => {
   return reactions.reduce((group: Reaction[], reaction) => {

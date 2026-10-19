@@ -1,5 +1,6 @@
-import api from "@/services/api/axios";
-import type { AvatarResponse, Chat } from "../types";
+import { api } from "@/services/api";
+import type { Chat } from "@/types/chats";
+import type { AvatarResponse } from "../types";
 
 export const serviceApi = {
   getChats: () => api.get<Chat[]>("chats"),

@@ -1,10 +1,12 @@
 import { Icon } from "@/components/ui";
 import { useAuth } from "@/features/auth";
 import clsx from "clsx";
-import Blocked from "./components/Blocked";
-import NotAuthorized from "./components/NotAuthorized";
-import PendingPassword from "./components/PendingPassword";
-import Starting from "./components/Starting";
+import {
+  Blocked,
+  NotAuthorized,
+  PendingPassword,
+  Starting,
+} from "./components";
 
 const Auth = () => {
   const { stateInstance, actionResult } = useAuth();

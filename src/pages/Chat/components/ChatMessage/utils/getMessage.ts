@@ -2,7 +2,7 @@ import type {
   ChatHistory,
   QuotedTypeHistory,
   ReactionTypeHistory,
-} from "@/features/journals/types";
+} from "@/features/journals";
 
 export const getMessage = (
   lastMessage: Exclude<ChatHistory, QuotedTypeHistory | ReactionTypeHistory>,

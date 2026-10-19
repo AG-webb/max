@@ -1,6 +1,6 @@
-import { mergeMessages } from "@/shared/utils/mergeMessages";
 import type { ChatHistory, JournalsState } from "../types";
 import { getChatsHistory } from "./getChatsHistory";
+import { mergeHistory } from "./mergeHistory";
 
 export const addChatHistory = (
   state: JournalsState,
@@ -9,5 +9,5 @@ export const addChatHistory = (
 ) => {
   const stateHistory = getChatsHistory(state, chatId);
 
-  state.chatsHistory![chatId] = mergeMessages(stateHistory, history);
+  state.chatsHistory![chatId] = mergeHistory(stateHistory, history);
 };

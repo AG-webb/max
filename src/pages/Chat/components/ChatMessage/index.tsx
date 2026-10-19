@@ -3,7 +3,7 @@ import type {
   ChatHistoryWithReactions,
   QuotedTypeHistory,
   ReactionTypeHistory,
-} from "@/features/journals/types";
+} from "@/features/journals";
 import { convertTimestampToDate } from "@/shared/utils";
 import clsx from "clsx";
 import { type CSSProperties } from "react";
@@ -11,7 +11,7 @@ import "./style.css";
 import { getMessage } from "./utils/getMessage";
 import { returnGroupReactions } from "./utils/returnGroupReactions";
 
-const ChatMessage = (
+export const ChatMessage = (
   props: Exclude<
     ChatHistoryWithReactions,
     QuotedTypeHistory | ReactionTypeHistory
@@ -103,5 +103,3 @@ const ChatMessage = (
     </div>
   );
 };
-
-export default ChatMessage;

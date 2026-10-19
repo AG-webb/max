@@ -1,4 +1,4 @@
-import { getApiErrorMessage } from "@/services/api/api.errors";
+import { getApiErrorMessage } from "@/services/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { serviceApi } from "../api/service.api";
 

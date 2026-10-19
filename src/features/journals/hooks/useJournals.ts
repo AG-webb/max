@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { actionResultSelector } from "@/features/auth/model/authSelectors";
-import { getChats } from "@/features/service/model/serviceThunks";
-import type { Chat } from "@/features/service/types";
+import { getChats } from "@/features/service";
 import { devMaxItems } from "@/shared/constants";
 import { delay } from "@/shared/utils";
+import type { Chat } from '@/types/chats';
 import { useEffect } from "react";
 import { journalsApi } from "../api/journals.api";
 import { chatsHistorySelector } from "../model/journalsSelectors";

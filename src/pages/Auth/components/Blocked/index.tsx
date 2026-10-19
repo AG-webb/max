@@ -1,4 +1,4 @@
-const Blocked = () => {
+export const Blocked = () => {
   return (
     <div className="grid gap-8">
       <div className="grid gap-2 mb-10">
@@ -12,5 +12,3 @@ const Blocked = () => {
     </div>
   );
 };
-
-export default Blocked;

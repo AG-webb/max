@@ -1,11 +1,17 @@
 import { Skeleton } from "@/components/loading";
-import type { ChatCellProps } from "@/features/service/types";
+import type { ChatHistory } from "@/features/journals";
 import { ROUTES } from "@/shared/constants";
 import { convertTimestampToDate, getLastMessageText } from "@/shared/utils";
+import type { Chat } from "@/types/chats";
 import type { MouseEventHandler } from "react";
 import { Link } from "react-router";
 import { Avatar, CustomButton, Icon } from "../ui";
 import "./style.css";
+
+type ChatCellProps = Chat & {
+  lastMessage: ChatHistory | null;
+  avatarSrc: string | null;
+};
 
 export const ChatCell = ({
   chatId,

@@ -1,11 +1,11 @@
-import type { ChatHistory } from "@/features/journals/types";
+import type { ChatHistory } from "@/features/journals";
 import { scrollToBottom } from "@/shared/utils";
 import { useEffect, useLayoutEffect, type RefObject } from "react";
-import ChatMessage from "../ChatMessage";
-import EmptyMessages from "../EmptyMessages";
+import { ChatMessage } from "../ChatMessage";
+import { EmptyMessages } from "../EmptyMessages";
 import { returnHistoryWithReactions } from "./utils/returnHistoryWithReactions";
 
-const ChatMessages = ({
+export const ChatMessages = ({
   history,
   chatMessagesRef,
 }: {
@@ -44,5 +44,3 @@ const ChatMessages = ({
     </div>
   );
 };
-
-export default ChatMessages;

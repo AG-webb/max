@@ -1,8 +1,8 @@
 import type { ChatsNotification } from "@/features/notifications";
-import { createChatHistory } from "@/shared/utils/createChatHistory";
 import type { JournalsState } from "../types";
 import { addChatHistory } from "./addChatHistory";
 import { changeOutgoingMessageStatus } from "./changeOutgoingMessageStatus";
+import { createChatHistory } from "./createChatHistory";
 import { markHistoryAsDeletedOrEdited } from "./markHistoryAsDeletedOrEdited";
 
 export const handleNotificationReceived = (

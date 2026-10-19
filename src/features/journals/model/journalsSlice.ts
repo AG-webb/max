@@ -15,7 +15,7 @@ export const journalsSlice = createSlice({
   name: SLICE_NAMES.JOURNALS,
   initialState,
   reducers: {
-    resetAuthState: () => initialState,
+    resetJournalsState: () => initialState,
     notificationReceived: (state, action: PayloadAction<ChatsNotification>) => {
       const notification = action.payload;
 
@@ -39,7 +39,7 @@ export const journalsSlice = createSlice({
 });
 
 export const {
-  resetAuthState,
+  resetJournalsState,
   addSendedMessageToHistory,
   notificationReceived,
 } = journalsSlice.actions;

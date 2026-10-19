@@ -1,5 +1,5 @@
-import { addSendedMessageToHistory } from "@/features/journals/model/journalsSlice";
-import { getApiErrorMessage } from "@/services/api/api.errors";
+import { addSendedMessageToHistory } from "@/features/journals";
+import { getApiErrorMessage } from "@/services/api";
 import type { ChatType } from "@/types/chats";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { sendingApi } from "../api/sending.api";

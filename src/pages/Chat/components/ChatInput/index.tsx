@@ -1,10 +1,9 @@
 import { Icon } from "@/components/ui";
-import { useSending } from "@/features/sending/hooks/useService";
-import { sendMessage } from "@/features/sending/model/sendingThunks";
+import { sendMessage, useSending } from "@/features/sending";
 import type { ChatType } from "@/types/chats";
 import { useState } from "react";
 
-const ChatInput = ({
+export const ChatInput = ({
   chatId,
   chatType,
 }: {
@@ -73,5 +72,3 @@ const ChatInput = ({
     </div>
   );
 };
-
-export default ChatInput;

@@ -72,3 +72,11 @@ export type DeletedMessage = {
 export type NonDeletedMessage = {
   isDeleted?: false;
 };
+
+export type Chat = {
+  chatId: string;
+  name: string;
+  type: ChatType;
+  phoneNumber: number;
+  username: string;
+};

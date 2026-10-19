@@ -1,6 +1,6 @@
-import type { ChatHistory } from "@/features/journals/types";
+import type { ChatHistory } from "@/features/journals";
 
-export const mergeMessages = (
+export const mergeHistory = (
   existing: ChatHistory[],
   incoming: ChatHistory[] | ChatHistory,
 ) => {

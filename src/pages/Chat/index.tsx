@@ -1,17 +1,18 @@
 import { useAppDispatch } from "@/app/store";
 import { PageLoader } from "@/components/loading";
 import { Avatar, Icon } from "@/components/ui";
-import { useJournals } from "@/features/journals/hooks/useJournals";
-import { notificationReceived } from "@/features/journals/model/journalsSlice";
-import { ACTION_TYPES } from "@/features/journals/model/journalsThunks";
+import {
+  ACTION_TYPES,
+  notificationReceived,
+  useJournals,
+} from "@/features/journals";
 import type { ChatsNotification } from "@/features/notifications";
-import { useService } from "@/features/service/hooks/useService";
+import { useService } from "@/features/service";
 import { ROUTES } from "@/shared/constants";
 import { handleIsActionLoading } from "@/shared/utils";
 import { useRef } from "react";
 import { Link, useParams } from "react-router";
-import ChatInput from "./components/ChatInput";
-import ChatMessages from "./components/ChatMessages";
+import { ChatInput, ChatMessages } from "./components";
 
 const notification: ChatsNotification = {
   typeWebhook: "incomingMessageReceived",

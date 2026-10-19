@@ -3,7 +3,7 @@ import type {
   ExtendedTextMessageData,
   FileTypeHistory,
   PollMessageData,
-} from "@/features/journals/types";
+} from "@/features/journals";
 import type { StateInstance } from "@/types";
 import type {
   ChatType,

@@ -1,6 +1,6 @@
 import { PageLoader } from "@/components/loading";
 
-const Starting = () => {
+export const Starting = () => {
   return (
     <div className="grid gap-8">
       <PageLoader />
@@ -15,5 +15,3 @@ const Starting = () => {
     </div>
   );
 };
-
-export default Starting;

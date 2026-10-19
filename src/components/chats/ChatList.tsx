@@ -1,11 +1,10 @@
-import { useJournals } from "@/features/journals/hooks/useJournals";
-import { getChatHistory } from "@/features/journals/model/journalsThunks";
-import { useService } from "@/features/service/hooks/useService";
+import { getChatHistory, useJournals } from "@/features/journals";
 import {
+  ACTION_TYPES,
   addChatAvatar,
   addLastMessage,
-} from "@/features/service/model/serviceSlice";
-import { ACTION_TYPES } from "@/features/service/model/serviceThunks";
+  useService,
+} from "@/features/service";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { ChatCell } from "./ChatCell";

@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { devMaxItems } from "@/shared/constants/variables";
 import { delay, handleIsActionLoading } from "@/shared/utils";
+import type { Chat } from '@/types/chats';
 import { serviceApi } from "../api/service.api";
 import {
   actionResultSelector,
@@ -8,7 +9,6 @@ import {
   chatsSelector,
   lastMessagesSelector,
 } from "../model/serviceSelectors";
-import type { Chat } from "../types";
 
 async function loadChatsAvatar(
   chats: Chat[],

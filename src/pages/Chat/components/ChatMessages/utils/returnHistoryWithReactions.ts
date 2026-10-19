@@ -1,7 +1,7 @@
 import type {
   ChatHistory,
   ChatHistoryWithReactions,
-} from "@/features/journals/types";
+} from "@/features/journals";
 
 export const returnHistoryWithReactions = (history: ChatHistory[]) => {
   return history.reduce((messages, message): ChatHistoryWithReactions[] => {

@@ -1,4 +1,4 @@
-import api from "@/services/api/axios";
+import { api } from "@/services/api";
 import type { sendMessageData, sendMessageResponse } from "../types";
 
 export const sendingApi = {

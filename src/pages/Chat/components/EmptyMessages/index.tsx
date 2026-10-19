@@ -2,7 +2,7 @@ import stickerSrc from "@/assets/images/sticker.png";
 import clsx from "clsx";
 import "./style.css";
 
-const EmptyMessages = () => {
+export const EmptyMessages = () => {
   return (
     <div
       className={clsx(
@@ -22,5 +22,3 @@ const EmptyMessages = () => {
     </div>
   );
 };
-
-export default EmptyMessages;

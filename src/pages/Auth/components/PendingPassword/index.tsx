@@ -7,7 +7,7 @@ import {
 import { handleIsActionLoading } from "@/shared/utils";
 import { useState } from "react";
 
-const PendingPassword = () => {
+export const PendingPassword = () => {
   const [password, setPassword] = useState("");
   const { dispatch, actionResult } = useAuth();
 
@@ -49,5 +49,3 @@ const PendingPassword = () => {
     </form>
   );
 };
-
-export default PendingPassword;

@@ -1,7 +1,7 @@
 import { authReducer } from "@/features/auth";
-import journalsReducer from "@/features/journals/model/journalsSlice";
-import sendingReducer from "@/features/sending/model/sendingSlice";
-import serviceReducer from "@/features/service/model/serviceSlice";
+import { journalsReducer } from "@/features/journals";
+import { sendingReducer } from "@/features/sending";
+import { serviceReducer } from "@/features/service";
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 

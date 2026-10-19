@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@/app/store";
 import { setAuthenticated } from "@/features/auth/model/authSlice";
-import { notificationReceived } from "@/features/journals/model/journalsSlice";
+import { notificationReceived } from "@/features/journals";
 import { useEffect, type ReactNode } from "react";
 import { subscribeToNotifications } from "../api/notifications.api";
 

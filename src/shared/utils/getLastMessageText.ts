@@ -1,4 +1,4 @@
-import type { ChatHistory } from "@/features/journals/types";
+import type { ChatHistory } from "@/features/journals";
 
 export const getLastMessageText = (lastMessage: ChatHistory) => {
   switch (lastMessage.typeMessage) {

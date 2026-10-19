@@ -1,9 +1,9 @@
-import api from "@/services/api/axios";
+import { api } from "@/services/api";
 import type {
   getQrCodeResponse,
   LogoutResponse,
   SendAuthorizationPasswordResponse,
-  StateInstanceResponse
+  StateInstanceResponse,
 } from "../types";
 
 export const authApi = {
