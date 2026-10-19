@@ -1,5 +1,5 @@
 import { authReducer } from "@/features/auth";
-import { journalsReducer } from "@/features/journals";
+import journalsReducer from "@/features/journals/model/journalsSlice";
 import { sendingReducer } from "@/features/sending";
 import { serviceReducer } from "@/features/service";
 import { configureStore } from "@reduxjs/toolkit";

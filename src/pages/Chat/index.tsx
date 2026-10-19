@@ -1,8 +1,8 @@
-import { useAppDispatch } from "@/app/store";
 import { PageLoader } from "@/components/loading";
 import { Avatar, Icon } from "@/components/ui";
 import {
   ACTION_TYPES,
+  getChatHistory,
   notificationReceived,
   useJournals,
 } from "@/features/journals";
@@ -10,7 +10,7 @@ import type { ChatsNotification } from "@/features/notifications";
 import { useService } from "@/features/service";
 import { ROUTES } from "@/shared/constants";
 import { handleIsActionLoading } from "@/shared/utils";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link, useParams } from "react-router";
 import { ChatInput, ChatMessages } from "./components";
 
@@ -52,24 +52,28 @@ const notification: ChatsNotification = {
 
 const Chat = () => {
   const { chatId } = useParams();
-  const { chats, avatars } = useService();
+  const { chats, avatars, dispatch } = useService();
   const { chatsHistory, actionResult } = useJournals();
   const chatMessagesRef = useRef<HTMLDivElement | null>(null);
 
   const currentChat = chats?.find((chat) => chat.chatId === chatId);
-  const currentChatHistory = chatsHistory && chatId && chatsHistory[chatId];
-
-  const dispatch = useAppDispatch();
 
   const handleClick = () => {
     dispatch(notificationReceived(notification));
   };
 
-  if (!currentChat || !chatId) {
+  useEffect(() => {
+    if (!chatId) return;
+
+    dispatch(getChatHistory({ chatId }));
+  }, [chatId, dispatch]);
+
+  if (!currentChat || !chatId || !chatsHistory) {
     return <PageLoader className="min-h-screen" />;
   }
 
   const chatAvatarSrc = avatars?.[chatId] || null;
+  const currentChatHistory = chatsHistory[chatId];
 
   return (
     <div className="chat h-screen grid grid-rows-[66px_minmax(0,1fr)]">

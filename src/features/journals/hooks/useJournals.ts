@@ -1,28 +1,23 @@
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { actionResultSelector } from "@/features/auth/model/authSelectors";
-import { getChats } from "@/features/service";
-import { devMaxItems } from "@/shared/constants";
-import { delay } from "@/shared/utils";
-import type { Chat } from '@/types/chats';
-import { useEffect } from "react";
+import { devMaxRequests } from "@/shared/constants";
+import { handleIsActionLoading } from "@/shared/utils";
+import type { Chat } from "@/types/chats";
 import { journalsApi } from "../api/journals.api";
 import { chatsHistorySelector } from "../model/journalsSelectors";
 import type { ChatHistory } from "../types";
 
 async function loadChatsLastMessage(
   chats: Chat[],
-  isSomeChatOpen: boolean,
   onUpdate: (lastMessage: ChatHistory[]) => void,
+  // signal?: AbortSignal,
 ) {
   for (const [index, chat] of chats.entries()) {
+    // REMOVE!! STATEMENT FOR NOT TO OVERLOAD NETWORK
+    if (index > devMaxRequests - 1) return;
+    // ------------
+
     try {
-      // REMOVE!! STATEMENT FOR NOT TO OVERLOAD NETWORK
-      if (index > devMaxItems) return;
-
-      if (isSomeChatOpen && index === 0) {
-        await delay(1100);
-      }
-
       const response = await journalsApi.getChatHistory({
         chatId: chat.chatId,
         count: 1,
@@ -32,25 +27,20 @@ async function loadChatsLastMessage(
     } catch (error) {
       console.error(`Failed to load last message of ${chat.chatId}`, error);
     }
-
-    if (index < chats.length - 1) {
-      await delay(1100);
-    }
   }
 }
 
 export const useJournals = () => {
   const chatsHistory = useAppSelector(chatsHistorySelector);
   const actionResult = useAppSelector(actionResultSelector);
+  const handleIsLoading = (actionResultType: string) =>
+    handleIsActionLoading(actionResult, actionResultType);
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getChats());
-  }, [dispatch]);
 
   return {
     chatsHistory,
     actionResult,
+    handleIsLoading,
     loadChatsLastMessage,
     dispatch,
   };

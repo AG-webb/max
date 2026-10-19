@@ -18,24 +18,25 @@ export const serviceSlice = createSlice({
   reducers: {
     resetAuthState: () => initialState,
     addLastMessage: (state, action: PayloadAction<ChatHistory[]>) => {
+      const chatHistory = action.payload[0];
+      const chatId = chatHistory.chatId;
+
       if (state.lastMessages) {
-        state.lastMessages = [...state.lastMessages, ...action.payload];
+        state.lastMessages[chatId] = chatHistory;
       } else {
-        state.lastMessages = action.payload;
+        state.lastMessages = { [chatId]: chatHistory };
       }
     },
     addChatAvatar: (
       state,
       action: PayloadAction<{ urlAvatar: string; chatId: string }>,
     ) => {
-      if (state.chats) {
-        const { urlAvatar, chatId } = action.payload;
+      const { urlAvatar, chatId } = action.payload;
 
-        if (state.avatars) {
-          state.avatars[chatId] = urlAvatar;
-        } else {
-          state.avatars = { [chatId]: urlAvatar };
-        }
+      if (state.avatars) {
+        state.avatars[chatId] = urlAvatar;
+      } else {
+        state.avatars = { [chatId]: urlAvatar };
       }
     },
   },

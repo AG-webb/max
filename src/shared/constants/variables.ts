@@ -1,1 +1,1 @@
-export const devMaxItems = 1;
+export const devMaxRequests = 2;

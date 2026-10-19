@@ -8,6 +8,6 @@ export type AvatarResponse = {
 
 export interface ServiceState extends DefaultStateType {
   chats: Chat[] | null;
-  lastMessages: ChatHistory[] | null;
+  lastMessages: { [chatId: string]: ChatHistory } | null;
   avatars: { [chatId: string]: string } | null;
 }
