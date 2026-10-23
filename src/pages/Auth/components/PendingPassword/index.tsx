@@ -4,12 +4,11 @@ import {
   sendAuthorizationPassword,
   useAuth,
 } from "@/features/auth";
-import { handleIsActionLoading } from "@/shared/utils";
 import { useState } from "react";
 
 export const PendingPassword = () => {
   const [password, setPassword] = useState("");
-  const { dispatch, actionResult } = useAuth();
+  const { dispatch, handleIsLoading } = useAuth();
 
   const handleSendMessage = async () => {
     if (password !== "") {
@@ -38,10 +37,7 @@ export const PendingPassword = () => {
       </div>
       <CustomButton
         onClick={handleSendMessage}
-        loading={handleIsActionLoading(
-          actionResult,
-          ACTION_TYPES.SEND_AUTHORIZATION_PASSWORD,
-        )}
+        loading={handleIsLoading(ACTION_TYPES.SEND_AUTHORIZATION_PASSWORD)}
         className="bg-button-primary text-neutral-primary p-2 rounded-lg cursor-pointer"
       >
         Send

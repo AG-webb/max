@@ -1,7 +1,13 @@
+import { getStringFirstLetter } from "@/shared/utils";
 import clsx from "clsx";
 import type { AvatarProps } from "./types";
 
-export const Avatar = ({ size = "medium", src, name, className }: AvatarProps) => {
+export const Avatar = ({
+  size = "medium",
+  src,
+  name,
+  className,
+}: AvatarProps) => {
   const sizeClasses = {
     "extra-small": "w-6 h-6",
     small: "w-10 h-10",
@@ -19,7 +25,7 @@ export const Avatar = ({ size = "medium", src, name, className }: AvatarProps) =
       {src ? (
         <img width={56} height={56} src={src} alt={name} />
       ) : (
-        name.charAt(0).toUpperCase()
+        getStringFirstLetter(name)
       )}
     </div>
   );

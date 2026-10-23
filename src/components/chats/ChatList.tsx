@@ -35,7 +35,7 @@ export const ChatList = () => {
   }, [chats, loadChatsLastMessage, dispatch]);
 
   useEffect(() => {
-    if (!chats?.length) return;
+    if (!chats) return;
 
     loadChatsAvatar(chats, (urlAvatar, chatId) => {
       dispatch(addChatAvatar({ urlAvatar, chatId }));

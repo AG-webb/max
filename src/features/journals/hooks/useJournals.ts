@@ -1,16 +1,17 @@
 import { useAppDispatch, useAppSelector } from "@/app/store";
-import { actionResultSelector } from "@/features/auth/model/authSelectors";
 import { devMaxRequests } from "@/shared/constants";
 import { handleIsActionLoading } from "@/shared/utils";
 import type { Chat } from "@/types/chats";
 import { journalsApi } from "../api/journals.api";
-import { chatsHistorySelector } from "../model/journalsSelectors";
+import {
+  actionResultSelector,
+  chatsHistorySelector,
+} from "../model/journalsSelectors";
 import type { ChatHistory } from "../types";
 
 async function loadChatsLastMessage(
   chats: Chat[],
   onUpdate: (lastMessage: ChatHistory[]) => void,
-  // signal?: AbortSignal,
 ) {
   for (const [index, chat] of chats.entries()) {
     // REMOVE!! STATEMENT FOR NOT TO OVERLOAD NETWORK
@@ -18,12 +19,12 @@ async function loadChatsLastMessage(
     // ------------
 
     try {
-      const response = await journalsApi.getChatHistory({
+      const { data } = await journalsApi.getChatHistory({
         chatId: chat.chatId,
         count: 1,
       });
 
-      onUpdate(response.data ?? []);
+      onUpdate(data ?? []);
     } catch (error) {
       console.error(`Failed to load last message of ${chat.chatId}`, error);
     }

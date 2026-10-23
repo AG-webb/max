@@ -37,8 +37,7 @@ export type MessageType =
   | ExtendedTextMessageType
   | FileMessageType
   | PollMessageType
-  | ReactionMessageType
-  | QuotedMessageType;
+  | ReactionMessageType;
 
 export type ChatType = "user" | "group" | "channel" | "bot";
 

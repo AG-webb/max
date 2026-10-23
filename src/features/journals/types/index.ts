@@ -10,7 +10,6 @@ import type {
   NonEditedMessage,
   PollMessageType,
   QuotedMessage,
-  QuotedMessageType,
   ReactionMessageType,
   StatusMessageType,
   TextMessageType,
@@ -49,12 +48,14 @@ export type IncomingHistory = {
 export type TextTypeHistory = {
   typeMessage: TextMessageType;
   textMessage: string;
+  quotedMessage?: QuotedMessage;
 };
 
 export type ExtendedTextTypeHistory = {
   typeMessage: ExtendedTextMessageType;
   textMessage: string;
   extendedTextMessage: ExtendedTextMessage;
+  quotedMessage?: QuotedMessage;
 };
 
 export type FileTypeHistory = {
@@ -66,6 +67,7 @@ export type FileTypeHistory = {
   jpegThumbnail: string;
   mimeType: string;
   isAnimated: boolean;
+  quotedMessage?: QuotedMessage;
 };
 
 export type ReactionTypeHistory = {
@@ -77,14 +79,10 @@ export type ReactionTypeHistory = {
   senderContactName: string;
 };
 
-export type QuotedTypeHistory = {
-  typeMessage: QuotedMessageType;
-  quotedMessage: QuotedMessage;
-};
-
 export type PollTypeHistory = {
   typeMessage: PollMessageType;
   pollMessageData: PollMessageData;
+  quotedMessage?: QuotedMessage;
 };
 
 export type ChatHistoryBase = {
@@ -103,7 +101,6 @@ export type ChatHistory = {
   (
     | ExtendedTextTypeHistory
     | ReactionTypeHistory
-    | QuotedTypeHistory
     | PollTypeHistory
     | ((TextTypeHistory | FileTypeHistory) & ForwardedProps)
   );
@@ -113,6 +110,10 @@ export type ChatHistoryWithReactions = Exclude<
   ReactionTypeHistory
 > & {
   reactions?: Reaction[];
+};
+
+export type ChatHistoryWithReactionsAndGroups = ChatHistoryWithReactions & {
+  groupPosition?: "first" | "last" | "single" | "middle";
 };
 
 export type Reaction = {
@@ -136,6 +137,11 @@ export interface ExtendedTextMessageData {
 
 export interface PollMessageData {
   name: string;
-  options: string[];
-  allowToChangeAnswer: boolean;
+  options: PollOption[];
+  allowToChangeAnswer?: boolean;
+  multipleAnswers?: boolean;
 }
+
+export type PollOption = {
+  optionName: string;
+};

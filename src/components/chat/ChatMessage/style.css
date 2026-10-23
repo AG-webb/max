@@ -1,0 +1,72 @@
+.chat-message {
+  padding-block: var(--chat-message-padding-top, 4px)
+    var(--chat-message-padding-bottom, 4px);
+
+  &_outgoing {
+    --chat-message-wrap-bg: linear-gradient(
+      239deg,
+      var(--primary-gradient-step-1) 0%,
+      var(--primary-gradient-step-2) 50%,
+      var(--primary-gradient-step-3) 100%
+    );
+
+    &.chat-message_first {
+      --chat-message-padding-bottom: 1px;
+      --chat-message-bottom-right-border-radius: 6px;
+    }
+    &.chat-message_middle {
+      --chat-message-padding-top: 1px;
+      --chat-message-padding-bottom: 1px;
+      --chat-message-top-right-border-radius: 6px;
+      --chat-message-bottom-right-border-radius: 6px;
+    }
+    &.chat-message_last {
+      --chat-message-padding-top: 1px;
+      --chat-message-top-right-border-radius: 6px;
+    }
+  }
+  &_incoming {
+    --chat-message-wrap-bg: linear-gradient(
+      239deg,
+      var(--secondary-gradient-step-1) 0%,
+      var(--secondary-gradient-step-2) 50%,
+      var(--secondary-gradient-step-3) 100%
+    );
+
+    &.chat-message_first {
+      --chat-message-padding-bottom: 1px;
+      --chat-message-bottom-left-border-radius: 6px;
+    }
+    &.chat-message_middle {
+      --chat-message-padding-top: 1px;
+      --chat-message-padding-bottom: 1px;
+      --chat-message-top-left-border-radius: 6px;
+      --chat-message-bottom-left-border-radius: 6px;
+    }
+    &.chat-message_last {
+      --chat-message-padding-top: 1px;
+      --chat-message-top-left-border-radius: 6px;
+    }
+  }
+
+  &_edited {
+    --chat-message-info-width: 105px;
+  }
+
+  &__wrap {
+    background-image: var(--chat-message-wrap-bg);
+    border-radius: var(--chat-message-top-left-border-radius, 16px)
+      var(--chat-message-top-right-border-radius, 16px)
+      var(--chat-message-bottom-right-border-radius, 16px)
+      var(--chat-message-bottom-left-border-radius, 16px);
+  }
+
+  &__text {
+    &::after {
+      content: "";
+      display: inline-block;
+      width: var(--chat-message-info-width, 70px);
+      height: 12px;
+    }
+  }
+}

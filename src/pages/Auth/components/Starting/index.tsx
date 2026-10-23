@@ -1,9 +1,9 @@
-import { PageLoader } from "@/components/loading";
+import { Spinner } from "@/components/loading";
 
 export const Starting = () => {
   return (
     <div className="grid gap-8">
-      <PageLoader />
+      <Spinner />
       <div className="grid gap-2 mb-10">
         <div className="text-[20px] font-semibold leading-6 tracking-[0.15px]">
           Starting instance

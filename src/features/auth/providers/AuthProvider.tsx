@@ -1,5 +1,5 @@
 import { Fallback, InstanceErrorFallback } from "@/components/error";
-import { PageLoader } from "@/components/loading";
+import { Spinner } from "@/components/loading";
 import { handleIsActionError } from "@/shared/utils";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   if (stateInstance === null || actionResult.status === "idle") {
-    return <PageLoader className="h-screen" />;
+    return <Spinner className="h-screen" />;
   }
 
   return (

@@ -8,7 +8,7 @@ export const Fallback = ({ error, resetErrorBoundary }: FallbackProps) => {
       className="fallback grid gap-3 content-center justify-items-center p-10 min-h-screen"
     >
       <p className="text-3xl">Something went wrong:</p>
-      <pre>{getErrorMessage(error)}</pre>
+      <p>{getErrorMessage(error)}</p>
       <CustomButton
         onClick={resetErrorBoundary}
         size="medium"

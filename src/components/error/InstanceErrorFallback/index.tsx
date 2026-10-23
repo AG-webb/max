@@ -2,7 +2,11 @@ import { useAppDispatch } from "@/app/store";
 import { CustomButton } from "@/components/ui";
 import { getStateInstance } from "@/features/auth";
 
-export const InstanceErrorFallback = ({ errorMessage }: { errorMessage: string }) => {
+export const InstanceErrorFallback = ({
+  errorMessage,
+}: {
+  errorMessage: string;
+}) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -11,7 +15,7 @@ export const InstanceErrorFallback = ({ errorMessage }: { errorMessage: string }
       className="fallback grid gap-3 content-center justify-items-center p-10 min-h-screen"
     >
       <p className="text-3xl">Something went wrong:</p>
-      <pre>{errorMessage}</pre>
+      <p>{errorMessage}</p>
       <CustomButton
         onClick={() => dispatch(getStateInstance())}
         size="medium"

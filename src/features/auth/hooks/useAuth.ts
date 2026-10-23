@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/app/store";
-import { handleIsActionLoading } from "@/shared/utils";
+import { handleIsActionError, handleIsActionLoading } from "@/shared/utils";
 import {
   actionResultSelector,
   qrCodeSelector,
@@ -12,6 +12,8 @@ export const useAuth = () => {
   const stateInstance = useAppSelector(stateInstanceSelector);
   const handleIsLoading = (actionResultType: string) =>
     handleIsActionLoading(actionResult, actionResultType);
+  const handleIsError = (actionResultType: string) =>
+    handleIsActionError(actionResult, actionResultType);
   const isAuthenticated =
     stateInstance === "authorized" || stateInstance === "suspended";
   const dispatch = useAppDispatch();
@@ -22,6 +24,7 @@ export const useAuth = () => {
     stateInstance,
     isAuthenticated,
     handleIsLoading,
+    handleIsError,
     dispatch,
   };
 };

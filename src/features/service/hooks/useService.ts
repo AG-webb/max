@@ -13,7 +13,6 @@ import {
 async function loadChatsAvatar(
   chats: Chat[],
   onUpdate: (urlAvatar: string, chatId: string) => void,
-  // signal?: AbortSignal,
 ) {
   for (const [index, chat] of chats.entries()) {
     // REMOVE!! STATEMENT FOR NOT TO OVERLOAD NETWORK
@@ -21,9 +20,9 @@ async function loadChatsAvatar(
     // ------------
 
     try {
-      const response = await serviceApi.getAvatar(chat.chatId);
+      const { data } = await serviceApi.getAvatar(chat.chatId);
 
-      onUpdate(response.data.urlAvatar, chat.chatId);
+      onUpdate(data.urlAvatar, chat.chatId);
     } catch (error) {
       console.error(`Failed to load Avatar of ${chat.chatId}`, error);
     }

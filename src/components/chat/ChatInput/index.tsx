@@ -24,7 +24,7 @@ export const ChatInput = ({
     <div className="chat-input bg-dark-primary rounded-2xl overflow-hidden grid grid-cols-[48px_1fr_96px] items-center">
       <div className="chat-input__attachment">
         <div className="chat-input__btn w-12 h-12 px-2 py-1 flex items-center justify-center cursor-pointer text-icon-tertiary">
-          <Icon type="attachment" />
+          <Icon type="attachment" className="text-[24px]" />
         </div>
       </div>
       <div className="chat-input__element h-full">
@@ -43,7 +43,7 @@ export const ChatInput = ({
       </div>
       <div className="chat-input__btns grid grid-cols-2">
         <div className="chat-input__btn w-12 h-12 px-2 py-1 flex items-center justify-center cursor-pointer text-icon-tertiary">
-          <Icon type="sticker" />
+          <Icon type="sticker" className="text-[24px]" />
         </div>
         {inputValue !== "" ? (
           <div className="chat-input__btn w-12 h-12 px-2 py-1 flex items-center justify-center cursor-pointer text-icon-tertiary">
@@ -52,20 +52,12 @@ export const ChatInput = ({
               type="button"
               onClick={handleSendMessage}
             >
-              <Icon type="arrow-up" />
-              <svg width="24" height="24" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  fillRule="evenodd"
-                  d="M5.29 11.705a1 1 0 0 1 .005-1.415l6.015-5.97a1 1 0 0 1 1.41.001l5.987 5.972a1 1 0 0 1-1.412 1.416l-4.28-4.27v11.533a1 1 0 1 1-2 0V7.43l-4.31 4.279a1 1 0 0 1-1.414-.005"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
+              <Icon type="arrow-up" className="text-[24px]" />
             </button>
           </div>
         ) : (
           <div className="chat-input__btn w-12 h-12 px-2 py-1 flex items-center justify-center cursor-pointer text-icon-tertiary">
-            <Icon type="notification" />
+            <Icon type="notification" className="text-[24px]" />
           </div>
         )}
       </div>

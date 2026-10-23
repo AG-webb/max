@@ -10,12 +10,12 @@ export {
   type ChatHistory,
   type ChatHistoryBase,
   type ChatHistoryWithReactions,
+  type ChatHistoryWithReactionsAndGroups,
   type ExtendedTextMessage,
   type ExtendedTextMessageData,
   type FileTypeHistory,
   type IncomingHistory,
   type JournalsState, type OutgoingHistory, type PollMessageData,
-  type QuotedTypeHistory,
   type Reaction,
   type ReactionTypeHistory
 } from "./types";

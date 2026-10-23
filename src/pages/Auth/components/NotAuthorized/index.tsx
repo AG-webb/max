@@ -1,17 +1,13 @@
 import { Skeleton } from "@/components/loading";
 import { CustomButton } from "@/components/ui";
 import { ACTION_TYPES, getQrCode, useAuth } from "@/features/auth";
-import { handleIsActionError, handleIsActionLoading } from "@/shared/utils";
 import { useEffect } from "react";
 
 export const NotAuthorized = () => {
-  const { dispatch, qrCode, actionResult } = useAuth();
+  const { dispatch, qrCode, handleIsLoading, handleIsError } = useAuth();
 
-  const qrLoading = handleIsActionLoading(
-    actionResult,
-    ACTION_TYPES.GET_QR_CODE,
-  );
-  const qrError = handleIsActionError(actionResult, ACTION_TYPES.GET_QR_CODE);
+  const qrLoading = handleIsLoading(ACTION_TYPES.GET_QR_CODE);
+  const qrError = handleIsError(ACTION_TYPES.GET_QR_CODE);
 
   const handleRefreshQrCode = () => {
     dispatch(getQrCode());

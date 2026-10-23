@@ -80,13 +80,16 @@ export const handleIncomingNotification = (
       };
     }
     case "quotedMessage": {
-      const { extendedTextMessageData, typeMessage } = messageData;
+      const { extendedTextMessageData } = messageData;
 
       return {
         ...base,
         ...incomingMessageProps,
-        typeMessage,
+        typeMessage: "textMessage",
+        textMessage: extendedTextMessageData.text,
         quotedMessage: extendedTextMessageData,
+        isForwarded: false,
+        forwardingScore: 0,
       };
     }
     case "locationMessage": {

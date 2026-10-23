@@ -20,9 +20,6 @@ export const getLastMessageText = (lastMessage: ChatHistory) => {
     case "pollMessage": {
       return lastMessage.pollMessageData.name;
     }
-    case "quotedMessage": {
-      return "Quoted message";
-    }
     case "reactionMessage": {
       return `Reacted to message ${lastMessage.extendedTextMessageData.text}`;
     }
