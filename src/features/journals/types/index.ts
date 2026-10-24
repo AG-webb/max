@@ -21,14 +21,9 @@ export interface JournalsState {
   chatsHistory: { [chatId: string]: ChatHistory[] } | null;
 }
 
-export type ChatHistoryData = {
+export type GetChatHistoryData = {
   chatId: string;
   count?: number;
-};
-
-export type LastMessageData = {
-  chatId: string;
-  lastMessage: ChatHistory;
 };
 
 export type OutgoingHistory = {

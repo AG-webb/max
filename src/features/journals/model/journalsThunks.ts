@@ -2,7 +2,7 @@ import { type RootState } from "@/app/store";
 import { getApiErrorMessage } from "@/services/api/api.errors";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { journalsApi } from "../api/journals.api";
-import type { ChatHistoryData } from "../types";
+import type { GetChatHistoryData } from "../types";
 
 export const ACTION_TYPES = {
   GET_CHATS_HISTORY: "journals/getChatHistory",
@@ -10,7 +10,7 @@ export const ACTION_TYPES = {
 
 export const getChatHistory = createAsyncThunk(
   ACTION_TYPES.GET_CHATS_HISTORY,
-  async ({ chatId, count }: ChatHistoryData, { rejectWithValue }) => {
+  async ({ chatId, count }: GetChatHistoryData, { rejectWithValue }) => {
     try {
       const { data } = await journalsApi.getChatHistory({ chatId, count });
 
