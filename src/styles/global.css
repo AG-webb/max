@@ -29,6 +29,7 @@
   --color-dark-surface: var(--background-surface);
   --color-dark-tertiary: var(--background-tertiary);
   --color-button-primary: var(--button-primary);
+  --color-icon-themed: var(--icon-themed);
   --color-divider-primary: var(--divider-primary);
   --color-divider-secondary: var(--divider-secondary);
   --color-card-hover: var(--background-card-hover);

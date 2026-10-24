@@ -10,7 +10,7 @@ type NavLinkProps = {
 
 const NavLink = ({ icon, text, isActive, className }: NavLinkProps) => {
   const colorClasses = isActive
-    ? "text-neutral-primary"
+    ? "text-icon-themed lg:text-neutral-primary"
     : "text-neutral-primary/50 hover:text-neutral-primary/70";
 
   return (

@@ -1,21 +1,23 @@
 .nav {
   &__links {
     &_folders {
-      position: relative;
+      @media (min-width: 936px) {
+        position: relative;
 
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 32px;
-        background: linear-gradient(
-          180deg,
-          rgb(0 0 0 / 0) 0%,
-          var(--background-primary) 100%
-        );
-        pointer-events: none;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 32px;
+          background: linear-gradient(
+            180deg,
+            rgb(0 0 0 / 0) 0%,
+            var(--background-primary) 100%
+          );
+          pointer-events: none;
+        }
       }
     }
   }
